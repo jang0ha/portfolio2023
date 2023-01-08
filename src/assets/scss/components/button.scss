@@ -1,0 +1,163 @@
+.btn{
+    display: inline-block;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 11px 26px;
+    font-size: 0.875rem;
+    line-height: 23px;
+    font-size: 19px;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-weight: bold;
+    &.round-btn{
+      width: 48px; height: 48px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; line-height: 1;
+      
+      // 라운드 버튼이랑 일반 버튼이랑 배경 보더 컬러가 달라서 분리 ----------
+      &.btn-download{
+        background-color: $white !important;
+        border-color: $light-gray-1 !important;
+        &:hover{
+          background-color: $white !important;
+          border-color: $white !important;
+          .icon-download{
+            background-image: url('../images/icon-download-hover.svg');
+          }
+        }
+      }
+      &.btn-outline-dark{
+        color: $dark-gray-2 !important;
+        background-color: $light-gray-3 !important;
+        border-color: $dark-gray-2 !important;
+      }
+      // ---------------------------------------------------------------
+    }
+    &.btn-download{
+      background-color: $white !important;
+      border-color: $light-gray-1 !important;
+      display: inline-flex;
+      align-items: center;
+    }
+    &.btn-md{
+      padding: 11px 26px; font-size: 16px;
+    }
+    &.btn-lg{
+      padding: 19px 40px; max-height: 60px; font-size: 18px; line-height: 21px;
+    }
+  
+    &.btn-primary{
+      color: $white;
+      background-color: $primary;
+      border-color: $primary;
+      &:hover{
+        background-color: $primary;
+        color: $white;
+      }
+    }
+    &.btn-outline-primary{
+      color: $primary;
+      background-color: $white;
+      border-color: $primary;
+      &:hover{
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+      }
+      &.active{
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
+    &.btn-gray{
+      color: $white !important;
+      background-color: $light-gray-3 !important;
+      border-color: $light-gray-3 !important;
+      &:hover{
+        background-color: $light-gray-3 !important;
+      }
+    }
+    &.btn-outline-gray{
+      color: $dark-gray-2 !important;
+      background-color: $white !important;
+      border-color: $light-gray-1 !important;
+      &:hover{
+        color: $white !important;
+        background-color: $primary !important;
+        border-color: $primary !important;
+      }
+    }
+    &.btn-dark{
+      color: $white !important;
+      background-color: $dark-gray-2 !important;
+      border-color: $dark-gray-2 !important;
+      &:hover{
+        background-color: $dark-gray-2 !important;
+        color: $white !important;
+        border-color: $dark-gray-2 !important;
+      }
+      &.active{
+        color: $white !important;
+        background-color: $dark-gray-2 !important;
+        border-color: $dark-gray-2 !important;
+      }
+    }
+    &.btn-outline-dark{
+      color: $light-gray-2 !important;
+      background-color: $white !important;
+      border-color: $dark-gray-2 !important;
+      &:hover{color: $primary !important;}
+    }
+    &.btn-white{
+      color: $light-gray-1 !important;
+      background-color: $white !important;
+      border-color: $light-gray-1 !important;
+      &:hover{
+        background-color: $white !important;
+      }
+    }
+    
+    &:disabled {
+      color: $white !important;
+      border-color: $gray-1 !important;
+      background-color: $gray-1 !important;
+      cursor:default;
+      &:hover{
+        color: $white !important;
+        border-color: $gray-1 !important;
+        background-color: $gray-1 !important;
+      }
+    }
+    &.disabled {
+      color: $gray-1 !important;
+      border-color: $gray-2 !important;
+      background-color: $gray-2 !important;
+      &:hover{
+        color: $gray-1 !important;
+        border-color: $gray-2 !important;
+        background-color: $gray-2 !important;
+      }
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .btn{ 
+      min-width: 90px;
+      &.btn-sm{
+        padding: 1px 0.3rem; font-size: 11px; line-height: 22px; min-height: 22px;
+      }
+      &.btn-md{
+        padding: 3px 0.7rem; font-size: 12px; line-height: 24px; min-height: 24px;
+      }
+      &.btn-lg{
+        padding: 5px 0.7rem; font-size: 13px; line-height: 24px; min-height: 26px;
+      }
+      &.btn-xl{
+        padding: 7px 0.7rem; font-size: 14px; line-height: 24px; min-height: 30px;
+      }
+    
+    }
+  }

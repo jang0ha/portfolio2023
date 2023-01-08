@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/html/_include/_head.html',{"title": "효성첨단소재"})
+  <script>
+    document.querySelector('html').classList.add('is-main');
+  </script>
+</head>
+
+<!-- 메인에서만 .main-wrapper붙음 -->
+
+<body class="main-wrapper">
+  <div id="wrap">
+    @@include('@@webRoot/html/_include/_header.html', {"main": true})
+    <div id="container">
+      <section></section>
+      <!-- // 섹션 1 : 메인 비주얼  -->
+
+    </div>
+    @@include('@@webRoot/html/_include/_modal.html')
+    @@include('@@webRoot/html/_include/_footer.html')
+  </div>
+
+  <!-- 메인에서만 붙는 js  -->
+  <script src="'@@webRoot/src/assets/js/main.js'"></script>
+</body>
+
+</html>
