@@ -1,7 +1,8 @@
-$blue: red;
-$primary : $blue;
+$red: red;
+$primary : $red;
 $black: #000;
 
 $theme-colors: (
   "primary":    $primary,
+  "black" :  $black,
 ) !default;
