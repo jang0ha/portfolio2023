@@ -1,0 +1,22 @@
+/*웹폰트 스타일*/
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  src: url('../fonts/Pretendard/Pretendard-Regular.ttf') format('ttf'),
+       url('../fonts/Pretendard/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  src: url('../fonts/Pretendard/Pretendard-Bold.ttf') format('ttf'),
+       url('../fonts/Pretendard/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  src: url('../fonts/Pretendard/Pretendard-ExtraBold.ttf') format('ttf'),
+       url('../fonts/Pretendard/Pretendard-ExtraBold.woff') format('woff');
+}

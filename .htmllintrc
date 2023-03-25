@@ -3,7 +3,7 @@
   "head-req-title": false,
   "indent-style": "spaces",
   "indent-width": 2,
-  "class-style": "dash",
+  "class-style": "none",
   "id-class-style": false,
   "img-req-alt": "allownull",
   "attr-name-style": false,
