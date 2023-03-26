@@ -73,3 +73,11 @@ button:focus{
     }
   }
 }
+
+.top-button{
+  @include button();
+  font : {
+    size : $fs-de;
+  }
+  margin-left: auto;
+}

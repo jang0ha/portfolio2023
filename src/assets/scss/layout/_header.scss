@@ -11,7 +11,10 @@
   padding: 0;
   width: 100%;
   top: 0;
-  transition: top mix-blend-mode 0.2s;
+  background-color: transparent;
+  mix-blend-mode: difference;
+  isolation: isolate;
+  transition: top 0.2s, mix-blend-mode 0.2s;
   .inner {
     @include hstack(0);
     justify-content: space-between;
@@ -80,7 +83,6 @@
   }
   letter-spacing: -0.75rem;
   color: $black;
-  mix-blend-mode: difference;
   // flex-grow: 1;
 
   .open-menu & {
