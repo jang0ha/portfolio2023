@@ -11,10 +11,12 @@ html {
   line-height: 1.285;
   font-size: 0.26666666666666665vw; //10
   transition:  font-size 0.2s;
-  &.fixed{
-    position: fixed;
-    overflow-y: scroll;
-    width: 100%;
+  &.stop-scroll{
+    body{
+        //  position: fixed;
+      overflow-y: hidden;
+      width: 100%;
+    }    
   }
 }
 body{
@@ -69,12 +71,15 @@ body{
     font-size: 0.09775171065493645vw;
   }
   body {
-
+    font-size: rem(14);
   }
 }
 
 @include media-laptop-up{
   html {
     font-size: 6.25%; //10px
+  }
+  body {
+    font-size: rem(16);
   }
 }

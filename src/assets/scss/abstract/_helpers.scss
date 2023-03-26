@@ -7,7 +7,7 @@
 
 
 // 숨김처리 
-.visually-hidden {
+.visually-hidden, .visually-hidden-focusable:not(:focus) {
   position: absolute !important;
   width: 1rem !important;
   height: 1rem !important;

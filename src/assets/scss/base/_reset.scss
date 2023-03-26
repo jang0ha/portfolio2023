@@ -101,6 +101,9 @@ a {
   &:hover{
     text-decoration: none;
   }
+  &:focus{
+    outline: auto;
+  }
 }
 
 pre,
@@ -166,11 +169,14 @@ button {
   border-radius: 0;
   font-size: 1em;
   line-height: 0;
+  &:focus{
+    outline:invert;
+  }
 }
 
-button:focus:not(:focus-visible) {
-  outline: 0;
-}
+// button:focus:not(:focus-visible) {
+//   outline: 0;
+// }
 
 input,
 button,

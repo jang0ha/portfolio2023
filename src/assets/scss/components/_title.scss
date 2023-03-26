@@ -59,6 +59,12 @@
   text-shadow: text-outline($border-color);
   line-height: 1.1;
   color:$white;
+
+  @include media-tablet-up{
+    font : {
+      size : rem(68);
+    }
+  }
 }
 
 
