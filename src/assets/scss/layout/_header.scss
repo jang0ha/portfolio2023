@@ -12,7 +12,7 @@
   width: 100%;
   top: 0;
   background-color: transparent;
-  mix-blend-mode: difference;
+
   isolation: isolate;
   transition: top 0.2s, mix-blend-mode 0.2s;
   .inner {
@@ -84,6 +84,7 @@
   letter-spacing: -0.75rem;
   color: $black;
   // flex-grow: 1;
+  width: rem(140);
 
   .open-menu & {
     color:$white;
@@ -94,13 +95,14 @@
   }
 }
 
-
-.gnb {
+.gnb{
   opacity: 0;
   visibility: hidden;
   display: none;
-
+  padding:0 rem(20);
   .open-menu & {
+    @include vstack(null);
+    justify-content: flex-end;
     background-color: $black;
     position: fixed;
     top: $header-height;
@@ -108,10 +110,79 @@
     width: 100%;
     height: calc(100vh - $header-height);
     left: 0;
-    padding: rem(18) 0;
+    padding: rem(20);
     opacity: 1;
     visibility: visible;
-    display: block;
     overflow-x: auto;
+  }
+
+  @include media-laptop-up{
+    .open-menu & {
+      padding: rem(80);
+    }
+  }
+}
+
+.gnb-list {
+  width: 100%;
+  padding-bottom: rem(100);
+  a{
+    font : {
+      size : $fs-xl;
+      weight:$fw-extra;
+    }
+    padding:rem(24) rem(20);
+    color:$white;
+    display: block;
+    width: 100%;
+    border-bottom:1px solid $border-color;
+    position: relative;
+    mix-blend-mode: difference;
+    isolation: isolate;
+    transition:mix-blend-mode 0.3s 0.2s ease-in-out, padding-left 0.3s 0.2s ease-in-out;
+    &::before{
+      content: '';
+      width: 0;
+      height: 100%;
+      background-color: $white;
+
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      mix-blend-mode: difference;
+      isolation: isolate;
+      transition: mix-blend-mode 0.3s 0.2s ease-in-out, width 0.4s ease-in-out, background-color 0.1s ease-in ;
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: rem(36);
+      height: rem(36);
+      background: svg-image(outlink, fff) no-repeat center;
+      background-size: cover;
+      display: block;
+      mix-blend-mode: difference;
+      isolation: isolate;
+      transition: transform 0.2s ease-in-out,  mix-blend-mode 0.3s 0.2s ease-in-out;
+    }
+    &:hover{
+      padding-left: rem(80);
+      &::before{
+        width: 100%;
+      }
+      &::after{
+        transform: translateY(-50%) rotate(45deg);
+        background-size: contain;
+      }
+    }
+  }
+  @include media-laptop-up{
+    a{
+      padding: rem(40);
+    }
   }
 }

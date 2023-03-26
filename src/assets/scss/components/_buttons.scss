@@ -50,26 +50,25 @@ button:focus{
   position: relative;
   z-index: 1;
   mix-blend-mode: difference;
-  transition: all 0.3s  ease-in-out ;
-
+  isolation: isolate;
+  transition:mix-blend-mode 0.3s 0.2s ease-in-out, padding-left 0.3s 0.2s ease-in-out;
   &::before{
     content: '';
     width: 0;
     height: 100%;
-    background-color: $black;
-    transition: all 0.3s  ease-in-out ;
+    background-color: $white;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     mix-blend-mode: difference;
+    isolation: isolate;
+    transition: mix-blend-mode 0.3s 0.2s ease-in-out, width 0.4s ease-in-out;
   }
   &:hover{
-    color:$white;
-    padding-left: rem(28);
+    padding-left: rem(32);
     &::before{
       width: 100%;
-      background-color: $white;
     }
   }
 }
