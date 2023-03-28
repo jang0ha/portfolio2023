@@ -2,6 +2,7 @@
 
 // 히어로 섹션
 .hero-section{
+  margin-top: rem(200);
   padding-bottom:0;
 }
 .hero-wrap{
@@ -21,7 +22,7 @@
   }
  
   @include media-mobile-up{
-    padding-bottom: rem(40);
+    padding-bottom: rem(80);
     small{
       font : {
         size:$fs-xl;

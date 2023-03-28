@@ -18,6 +18,7 @@
   .inner {
     @include hstack(0);
     justify-content: space-between;
+    position: absolute;
   }
 
   @include media-mobile-up {
@@ -33,11 +34,17 @@
   &.hide-header{
     top:-#{$header-height};
   }
+  &.header-fixed{
+    position: sticky;
+    transform:none;
+    top: 0;
+  }
 }
 
 
 .header-util{
   @include hstack(10);
+  flex: none;
   p{
     display: none;
   }
@@ -49,6 +56,7 @@
   @include media-tablet-up{
     flex-grow: 1;
     justify-content: space-between;
+    width: 50%;
     p{
       display: block;
     }
@@ -79,20 +87,51 @@
 }
 
 .logo-area{
+  position: relative;
+  height: $header-height;
+
+  .logo-wrapper{
+    transform: translateY(rem(200));
+    small{
+      font : {
+        weight: bold;
+      }
+      display: block;
+      // margin-bottom: rem(16);
+    }
+   
+    &::after{
+      content:'';
+      padding-bottom: 100%;
+    }
+  }
   @include media-mobile-up{
     flex-grow: 1;
+    height: $header-height-lg;
+    width: 50%;
+    .logo-wrapper{
+      small{
+        font : {
+          size:$fs-xl;
+        }
+        // margin-bottom: rem(26);
+      
+      }
+    }
   }
 }
 
-.logo {
+
+
+%logo {
+  letter-spacing: -0.75rem;
+  transition:  color 0.3s;
+  display: inline-block;
   font : {
     size: $fs-lg;
     weight: $fw-bold;
   }
-  letter-spacing: -0.75rem;
-  color : $white;
-  transition:  color 0.3s;
-  display: inline-block;
+
   .open-menu & {
     color:$white;
     position: relative;
@@ -104,6 +143,45 @@
   }
 }
 
+
+.main-logo{
+  @extend %logo;
+  font : {
+    size: rem(50);
+    weight: $fw-bold;
+  }
+  width: 100vw;  
+  word-break: keep-all;
+  @include media-mobile-up{
+    font : {
+      size: 7vw;
+    }
+    // line-height: ;
+  }
+} 
+
+.sub-logo{
+  @extend %logo;
+  opacity: 0;
+  color: $dark-gray;
+  position: relative;
+  margin-left: rem(10);
+  padding-left: rem(10);
+  font : {
+    size: 14px;
+  }
+
+  &::before{
+    content:'';
+    width: 1px;
+    height: 70%;
+    background-color: $dark-gray;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
 
 
 .gnb{
