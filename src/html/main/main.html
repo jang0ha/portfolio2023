@@ -5,7 +5,7 @@
   @@include('@@webRoot/html/_include/_head.html',{"title": "장영하 포트폴리오"})
 </head>
 
-<body>
+<body class="is-main">
   <div id="wrap">
     @@include('@@webRoot/html/_include/_header.html', {"main": true})
     <main id="container">
@@ -13,8 +13,10 @@
       <section id="hero-section" class="section hero-section">
         <article class="hero-wrap">
           <div class="inner">
-            <small>✺ WEB PUBLISHER</small><br>
-            <h1 class="main-title">Jang Youngha</h1>
+            <div class="title-wrapper">
+              <small>✺ WEB PUBLISHER</small><br>
+              <h1 class="main-title">Jang Youngha</h1>
+            </div>
             <div class="description-wrapper">
               <ul class="left-description description">
                 <li># 웹 표준</li>
@@ -24,7 +26,7 @@
               <ul class="right-description description">
                 <li>Responsive / Adaptive / WEB & MOBILE & MOBILE WEB</li>
                 <li>Interactive User Interface / Dynamic User Experience</li>
-                <li>HTML / CSS / SASS / JAVASCRIPT / JQUERY / GULP & FIGMA / XD / ILLASTRAION / PHOTOSHOP</li>
+                <li>HTML / CSS / SASS / JAVASCRIPT / JQUERY / GULP & FIGMA / XD / ILLUSTRATION / PHOTOSHOP</li>
               </ul>
             </div>
 
@@ -49,8 +51,8 @@
       <section id="about-section" class="section about-section">
         <article class="about-wrap">
           <div class="inner">
-            <h2 class="visual-title">Is Your <span>Best</span><br>
-              business <span>partner.</span></h2>
+            <h2 class="visual-title">Is Your <span class="text-black">Best</span><br>
+              business <span class="text-black">partner.</span></h2>
             <div class="about-wrapper">
               <div class="left-container">
                 <p>
@@ -80,7 +82,7 @@
                   좋아하며, 기회가 있다면 조금 더딜지언정<br>
                   덤비는 무모함도 가지고 있습니다 :)</p><br><br>
                 <strong class="active-text">
-                  끊임 없이 발전하고 성장하는 기술력으로<br>
+                  끊임 없이 발전하고 성장하는 모습으로<br>
                   재밌고, 소중한 경험을 제공해드리겠습니다.
                 </strong>
               </div>
@@ -219,5 +221,6 @@
     initSwiper();
   });
 </script>
+<script src="../../assets/js/main.js"></script>
 
 </html>

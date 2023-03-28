@@ -1,6 +1,6 @@
 // gsap 플러그인 전역 등록 ()
 gsap.registerPlugin(ScrollTrigger);
-
+ScrollTrigger.saveStyles(".mobile, .desktop");
 
 var html = document.querySelector("html");
 var body = document.querySelector("body");
@@ -89,7 +89,10 @@ var About = {
         entry.target.classList.add("active");
       })
     },
-      { threshold: 0.8 }
+      {
+        threshold: 1,
+        rootMargin : '-30% 0px 0px 0px'
+      }
     )
 
     About.activeTextEls.forEach(el => io.observe(el))
@@ -148,7 +151,6 @@ var Common = {
 }
 
 
-console.log(typeof Common);
 
 
 // --------------------------------------------------------------

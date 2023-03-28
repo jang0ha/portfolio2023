@@ -33,7 +33,6 @@
   &.hide-header{
     top:-#{$header-height};
   }
-
 }
 
 
@@ -80,23 +79,28 @@
 }
 
 .logo-area{
-  .logo {
-    font : {
-      size: $fs-lg;
-      weight: $fw-bold;
-    }
-    letter-spacing: -0.75rem;
-    color: $black;
-    // flex-grow: 1;
-    display: inline-block;
-    .open-menu & {
-      color:$white;
-      position: relative;
-      z-index: 1034;
-    }
-  }
   @include media-mobile-up{
     flex-grow: 1;
+  }
+}
+
+.logo {
+  font : {
+    size: $fs-lg;
+    weight: $fw-bold;
+  }
+  letter-spacing: -0.75rem;
+  color : $white;
+  transition:  color 0.3s;
+  display: inline-block;
+  .open-menu & {
+    color:$white;
+    position: relative;
+    z-index: 1034;
+  }
+
+  .stickied-title &{
+    color: $black;
   }
 }
 

@@ -27,3 +27,30 @@ ____
 <br/>
 
 
+```
+mm.add({
+  isMobile: `(max-width: ${breakPoint - 1}px)` + "and (prefers-reduced-motion : no-preference)",
+  isDesktop: `(min-width: ${breakPoint}px)` + "and (prefers-reduced-motion : no-preference)",
+}, (contenxt) => {
+  console.log(contenxt.conditions);
+})
+
+```
+
+``` 
+**설명
+let mm = gsap.matchMedia(),
+  breakPoint = 992;
+
+setObj.add(값) = 값 추가 
+object.add(첫번째 인수 , 두번째인수)
+object.add(첫번째 인수 >> {객체 속성 : 재 정의}, , 두번째인수 >>콜백함수)
+
+콜백함수 : 함수가 실행될때 또 다른함수의 인수로 들어가는것을 콜백함수라고함. >> "나중에 해당 함수에 의해" 호출되도록 의도됨
+>>콜백을 트리거하는 이벤트 또는 조건이 발생하면 호출 함수에 의해 함수가 실행
+
+>> mm의 .add( [첫번째 인수] {isMobile, isDesktop} 속성 값을 : `재정의 ), [두번째 인수] 콜백(함수) => {}
+
+>>> 결국 첫번쨰 인수 조건, 두번쨰 인수 실행문 
+>>>>>  결과 미디어 쿼리에 따라 반응형 실행.
+```
