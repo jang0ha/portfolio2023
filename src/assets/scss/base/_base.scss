@@ -66,14 +66,14 @@ body{
   }
 }
 
-@include media-tablet-up{
-  html {
-    font-size: 0.09775171065493645vw;
-  }
-  body {
-    font-size: rem(14);
-  }
-}
+// @include media-tablet-up{
+//   html {
+//     font-size: 0.09775171065493645vw;
+//   }
+//   body {
+//     font-size: rem(14);
+//   }
+// }
 
 @include media-laptop-up{
   html {

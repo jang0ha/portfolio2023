@@ -1,10 +1,10 @@
 // gsap 플러그인 전역 등록 ()
-gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.saveStyles(".mobile, .desktop, [data-device='isMobile'], [data-device='isDesktop']"); //페이지가 로드되고 해당 요소의 css를 저장하는 기능 (인라인으로 들어가는  gsap 스타일을 버려버림)
+gsap.registerPlugin(ScrollTrigger, ResizeObserver, Observer);
+
 
 var html = document.querySelector("html");
 var body = document.querySelector("body");
-const headerBlock = document.querySelector("header");
+let headerBlock = document.querySelector("header");
 
 // // pc/모바일 분기 처리
 var Init = {

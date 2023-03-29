@@ -26,6 +26,8 @@
   display: inline-block;
   margin :rem(20) 0 rem(60) 0;
   transition: all 0.3s;
+
+
   @include media-mobile-up{
     font : {
       size: rem(150);
