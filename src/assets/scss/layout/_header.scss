@@ -12,8 +12,7 @@
   width: 100%;
   top: 0;
   background-color: transparent;
-
-  isolation: isolate;
+  isolation: isolate;    
   transition: top 0.2s, mix-blend-mode 0.2s;
   .inner {
     @include hstack(0);
@@ -112,7 +111,7 @@
     .logo-wrapper{
       small{
         font : {
-          size:$fs-xl;
+          size:$fs-lg;
         }
         // margin-bottom: rem(26);
       
@@ -145,18 +144,22 @@
 
 
 .main-logo{
-  @extend %logo;
-  font : {
-    size: rem(50);
-    weight: $fw-bold;
-  }
-  width: 100vw;  
-  word-break: keep-all;
-  @include media-mobile-up{
+
+  [data-device="isMobile"] &{
+    @extend %logo;
     font : {
-      size: 7vw;
+      size: rem(50);
+      weight: $fw-bold;
     }
-    // line-height: ;
+    width: 100vw;  
+    word-break: keep-all;
+  }
+  [data-device="isDesktop"] &{
+    font : {
+      size: rem(100);
+      weight: $fw-bold;
+    }
+    line-height: 1.2;
   }
 } 
 

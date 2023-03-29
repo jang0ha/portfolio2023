@@ -15,22 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
     isDesktop: `(min-width: ${breakPoint}px)` + "and (prefers-reduced-motion : no-preference)",
   }, (context) => {
     // console.log(context.conditions);
-    let {isMobile, isDesktop } = context.conditions;
-
-
-    // 현재 스크롤 위치값 구하기 
-    window.addEventListener("scroll", function () {
-      // console.log(window.scrollY)
-    })
-    let scrollY = window.scrollY || document.documentElement.scrollTop; // 현재 스크롤 위치 변수 저장
-
+    let { isMobile, isDesktop } = context.conditions;
+    
+    if (isMobile) {
+      body.setAttribute("data-device", "isMobile");
+    }
+    if (isDesktop) {
+      body.setAttribute("data-device", "isDesktop");
+    }
 
     let heroSection = document.querySelector('.hero-section');
     let mainLogoEl = document.querySelector(".main-logo");
     let subLogoEl = document.querySelector(".sub-logo");
     let logoWrapperEl = document.querySelector(".logo-wrapper");
     let subSmallEl = logoWrapperEl.querySelector("small");
-    let headerCenter = (headerBlock.clientHeight - subLogoEl.clientHeight) / 2;
+    let headerCenter = (headerBlock.clientHeight - 32) / 2; // 높이 고정값으로 줌 
 
     console.log(headerCenter);
 
@@ -49,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     visualLogo
       .to(logoWrapperEl, {
-        y: (headerCenter),
- 
+        y:  (headerBlock.clientHeight - 32) / 2,
       },"-=1")
       .to(mainLogoEl, {
         width : `auto`,
-        fontSize: `20rem`,
-        letterSpacing: ` -0.75rem`,
+        // fontSize: `20rem`,
+        fontSize : "".concat("20", "rem"),
+        // letterSpacing: ` -0.75rem`,
         transformOrigin: "0 0",
         height: `auto`,
         duration: 1,
@@ -63,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .to(subSmallEl, {
         opacity: 0,
         height: 0,
-        fontSize: `16rem`,
+        // fontSize: `16rem`,
+        fontSize:"".concat("16", "rem"),
         y: `-${subSmallEl.clientheight}`
       }, "-=0.5")
       .to(
@@ -74,3 +74,5 @@ document.addEventListener("DOMContentLoaded", function () {
     
   })
 });
+
+
