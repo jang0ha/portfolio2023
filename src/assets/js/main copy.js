@@ -135,42 +135,65 @@ mm.add({
     let projectItemEl = document.querySelectorAll('.project-item');
     var myProject = undefined;
     console.log('제발')
-
-
-
-    gsap.set('.project-item .thumb-img', {
-      yPercent: -50,
-      xPercent: -50
-    })
-
-    gsap.utils.toArray(".project-item").forEach((el) => {
-      const image = el.querySelector('.thumb-img'),
-        setX = gsap.quickSetter(image, "x", "px"),
-        setY = gsap.quickSetter(image, "y", "px"),
-        align = e => {
-          setX(e.clientX);
-          setY(e.clientY);
-        },
-        startFollow = () => document.addEventListener("mousemove", align),
-        stopFollow = () => document.removeEventListener("mousemove", align),
-        fade = gsap.to(image, {
-          autoAlpha: 1,
-          ease: "none",
-          paused: true,
-          onReverseComplete: stopFollow
-        });
-
+    projectItemEl.forEach((el) => {
+      let projectThumbImage = el.querySelector('.thumb-img')
       el.addEventListener('mouseenter', (e) => {
-        fade.play();
-        startFollow();
-        align(e);
-      });
+        gsap.to(projectThumbImage, {
+          autoAlpha: 1,
+          ease: Expo.ease
+        })
+      })
 
-      el.addEventListener('mouseleave', () => fade.reverse());
+      el.addEventListener('mouseleave', (e) => {
+        gsap.to(projectThumbImage, {
+          autoAlpha: 0,
+        })
+      })
 
-    });
-
-
+      el.addEventListener('mousemove', (e) => {
+        gsap.set(projectThumbImage, {
+          x: e.offsetX,
+          y: e.offsetY,
+          ease: Expo.ease
+        })
+      })
+    })
   }
 
 })
+
+
+const svg = document.querySelector("#svg");
+const path = document.querySelector("#path");
+let moved = true;
+
+const mouse = svg.createSVGPoint();
+
+window.addEventListener("mousemove", onMove);
+gsap.ticker.add(update);
+update();
+
+gsap.set(path, {
+  transformOrigin: "center",
+  xPercent: -50,
+  yPercent: -50
+});
+
+function update() {
+  if (!moved) return;
+  moved = false;
+
+  const { x, y } = mouse.matrixTransform(svg.getScreenCTM().inverse());
+
+  gsap.to(path, {
+    x,
+    y,
+    duration: 0.2
+  });
+}
+
+function onMove(event) {
+  moved = true;
+  mouse.x = event.clientX;
+  mouse.y = event.clientY;
+}
