@@ -1,43 +1,40 @@
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
+
 function saveStyles(elements) {
-	let styles, matchedMedia;
-	elements = gsap.utils.toArray(elements);
-	ScrollTrigger.saveStyles(elements);
-	ScrollTrigger.addEventListener("refreshInit", () => {
-		matchedMedia = false;
-		styles = elements.map(el => el.style.cssText);
-	});
-	ScrollTrigger.addEventListener("matchMedia", () => {
-		matchedMedia = true;
-	})
-	ScrollTrigger.addEventListener("refresh", () => matchedMedia || elements.forEach((el, i) => el.style.cssText = styles[i]));
+  let styles, matchedMedia;
+  elements = gsap.utils.toArray(elements);
+  ScrollTrigger.saveStyles(elements);
+  ScrollTrigger.addEventListener("refreshInit", () => {
+    matchedMedia = false;
+    styles = elements.map(el => el.style.cssText);
+  });
+  ScrollTrigger.addEventListener("matchMedia", () => {
+    matchedMedia = true;
+  })
+  ScrollTrigger.addEventListener("refresh", () => matchedMedia || elements.forEach((el, i) => el.style.cssText = styles[i]));
 }
 
 
 $(window).resize(function () {
-  
   let vh = window.innerHeight * 0.01;
-
   document.documentElement.style.setProperty("--vh", `${vh}px`);
-  
-
-	ScrollTrigger.refresh();
+  ScrollTrigger.refresh();
   ScrollTrigger.update();
-  gsap.matchMediaRefresh() 
+  gsap.matchMediaRefresh()
 });
 
 
-$(document).ready(function(){
-	ScrollTrigger.refresh();
+$(document).ready(function () {
+  ScrollTrigger.refresh();
   ScrollTrigger.update();
-  gsap.matchMediaRefresh() 
+  gsap.matchMediaRefresh()
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-	ScrollTrigger.refresh();
+  ScrollTrigger.refresh();
   ScrollTrigger.update();
-  gsap.matchMediaRefresh() 
+  gsap.matchMediaRefresh()
 });
 
 
@@ -69,11 +66,58 @@ mm.add({
     isDesktop
   } = context.conditions;
 
+
+  // 모바일 일떄
   if (isMobile) {
     body.setAttribute("data-device", "isMobile");
+
+   
   }
+
+  // pc 일떄
   if (isDesktop) {
     body.setAttribute("data-device", "isDesktop");
+
+  
+    // 프로젝트 호버 시 이미지 이동 이벤트
+    // context.add("projectThumb", (e) => {
+    //   let xpos = e.clientX,
+    //       ypos = e.clientY;
+      
+    //   tl = gsap.timeline();
+    //   tl.to(projectLinkThumbEl, {
+    //     x: xpos,
+    //     y: ypos,
+    //     duration: 0.5,
+    //     ease: Expo.ease
+    //   });
+    // })
+  
+    // // 프로젝트 호버 이벤트
+    // context.add("projectHover", (e) => {
+    //   if (e.type === "mouseenter") {
+    //     let xpos = e.offsetX;
+    //     let ypos = e.offsetY;
+    //     let imgSrc = e.target.dataset.src; // 이미지 src저장
+    //     let tl = gsap.timeline();
+    //     tl.set(projectLinkEl, {
+    //       x: xpos,
+    //       y: ypos,
+    //       attr: {src: imgSrc}
+    //     }).to(projectLinkEl, {
+    //       autoAlpha: 1,
+    //       scale: 1,
+    //       duration: 0.5,
+    //     });
+    //   } else if (e.type === "mouseleave") {
+    //     let tl = gsap.timeline();
+    //     tl.to(projectLinkEl, {
+    //       autoAlpha: 0,
+    //       scale:0.3,
+    //       duration: 0.5,
+    //     });
+    //   }
+    // })
   }
 
   const visualLogo = gsap.timeline({
@@ -90,12 +134,12 @@ mm.add({
 
   visualLogo
     .to(logoWrapperEl, {
-      y: isDesktop? (80 - 32) / 2 : (60 - 27) / 2,
+      y: isDesktop ? (80 - 32) / 2 : (60 - 27) / 2,
     }, "-=1")
     .to(mainLogoEl, {
       // fontSize: `20rem`,
       // fontSize : "".concat("20", "rem"),
-      fontSize:20,
+      fontSize: 20,
       transformOrigin: "0 0",
       duration: 1,
       width: 'fit-content',
@@ -112,12 +156,36 @@ mm.add({
         opacity: 1,
         duration: 1
       }, "+=0.5")
+
+
 })
 
 
+// 프로젝트 호버 이미지 
 
+const projectItemEl = document.querySelectorAll('.project-item');
 
-function logo() {
+projectItemEl.forEach((el) => {
+  const projectThumbImage = el.querySelector('.thumb-img')
   
- 
-}
+  el.addEventListener('mouseenter', (e) => {
+    gsap.to(projectThumbImage, { 
+      autoAlpha: 1,
+      ease: Expo.ease
+    })
+  })
+  
+  el.addEventListener('mouseleave', (e) => {
+    gsap.to(projectThumbImage, { 
+      autoAlpha: 0,
+    })
+  })
+  
+  el.addEventListener('mousemove', (e) => {
+    gsap.set(projectThumbImage, { 
+      x: e.offsetX,
+      y: e.offsetY,
+      ease: Expo.ease
+    })
+  })
+})
