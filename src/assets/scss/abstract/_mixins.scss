@@ -316,3 +316,9 @@ $path-image : '../images/';
   }
 }
 
+
+
+@mixin text-outline($border-width, $color){
+  -webkit-text-stroke: #{$border-width}px  $color;
+  text-stroke : #{$border-width}px  $color;
+ }

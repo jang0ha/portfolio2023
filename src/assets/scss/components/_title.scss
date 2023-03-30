@@ -43,7 +43,9 @@
   font : {
     size : rem(48);
   }
-  text-shadow: text-outline($border-color);
+  // text-shadow: text-outline($border-color);
+  @include text-outline(1, $border-color);
+
   line-height: 1.1;
   color:$white;
 
