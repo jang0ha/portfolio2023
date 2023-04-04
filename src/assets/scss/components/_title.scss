@@ -44,14 +44,14 @@
     size : rem(48);
   }
   // text-shadow: text-outline($border-color);
-  @include text-outline(1, $border-color);
+  @include text-outline(1, $black);
 
   line-height: 1.1;
-  color:$white;
+  color:transparent;
 
   @include media-tablet-up{
     font : {
-      size : rem(68);
+      size :$fs-xxl;
     }
   }
 }

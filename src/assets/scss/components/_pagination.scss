@@ -1,78 +1,39 @@
 @use '../abstract/'as *;
 
 //페이지네이션
-.pagination {
-  margin: 0;
-}
-
-.pagination-wrap {
-  @include hstack(null);
-  margin-top: rem(40);
+.pagination{
+  margin-top: rem(30);
+  @include hstack(10);
   justify-content: center;
   width: 100%;
-
-  .navigation{
-    display: none;
+  
+  a{
+    font : {
+      size: rem(16);
+    }
+    color:$white;
+    @include hstack(null);
+    justify-content: center;
+    width: rem(24);
+    height: rem(24);
+    border-radius: 50%;
   }
 
   @include media-mobile-up{
-    .navigation {
-      @include hstack(20);
-  
-      .before-pagination,
-      .after-pagination {
-        @include hstack(4);
-  
-        .page-item {
-          @include hstack(4);
-          justify-content: center;
-          width: rem(22);
-          height: rem(22);
-          .page-link {
-            width: 100%;
-            height: 100%;
-            border:1px solid $border-color;
-            &:hover {
-              border-color: $primary;
-              background-color: $primary;
-            }
-          }
-        }
+    a{
+      font : {
+        size: rem(24);
       }
-  
-      .paging {
-        @include hstack(10);
-  
-        .page-link {
-          width: 32rem;
-          height: 32rem;
-          font-weight: 700;
-          font-size: 14rem;
-        }
-      }
-  
-      .page-link {
-        @include hstack(null);
-        transition: all 0.3s;
-        text-decoration: none;
-        border-radius: 50%;
-        justify-content: center;
-        color: $dark-gray !important;
-  
-        &:hover {
-          background-color: $middle-gray;
-        }
-  
-        &.active {
-          background-color: $primary;
-          ;
-        }
-      }
-    }
+      width: rem(40);
+      height: rem(40);
 
-    .more-button{
-      display: none!important;
+      transition: all 0.3s;
+      &:hover, &:focus{
+
+        background-color: $white;
+        border-radius: 50%;
+        color:$black;
+      }
     }
-  
   }
 }

@@ -61,19 +61,19 @@ body{
     font-size: 0.13020833333333335vw;
   }
   body{
-    font-size: rem(16);
+    font-size: rem(14);
     line-height: 1.34;
   }
 }
 
-// @include media-tablet-up{
-//   html {
-//     font-size: 0.09775171065493645vw;
-//   }
-//   body {
-//     font-size: rem(14);
-//   }
-// }
+@include media-tablet-up{
+  html {
+    font-size: 0.09775171065493645vw;
+  }
+  body {
+    font-size: rem(14);
+  }
+}
 
 @include media-laptop-up{
   html {

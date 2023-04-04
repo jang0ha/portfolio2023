@@ -107,7 +107,7 @@ mm.add({
 
     visualLogo
       .to(logoWrapperEl, {
-        y: isDesktop ? (80 - 32) / 2 : (60 - 27) / 2,
+        y: isDesktop ? (80 - 23) / 2 : (60 - 27) / 2,
       }, "-=1")
       .to(mainLogoEl, {
         // fontSize: `20rem`,
@@ -136,13 +136,11 @@ mm.add({
     var myProject = undefined;
     console.log('제발')
 
-
-
     gsap.set('.project-item .thumb-img', {
       yPercent: -50,
       xPercent: -50
     })
-
+    
     gsap.utils.toArray(".project-item").forEach((el) => {
       const image = el.querySelector('.thumb-img'),
         setX = gsap.quickSetter(image, "x", "px"),
@@ -159,18 +157,19 @@ mm.add({
           paused: true,
           onReverseComplete: stopFollow
         });
-
+    
       el.addEventListener('mouseenter', (e) => {
         fade.play();
         startFollow();
         align(e);
       });
-
+    
       el.addEventListener('mouseleave', () => fade.reverse());
-
+    
     });
-
-
+    
   }
 
 })
+
+

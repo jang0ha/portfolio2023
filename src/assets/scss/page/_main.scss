@@ -215,12 +215,17 @@
 
 .project-section{
   @include vstack(null);
-  min-height: 100vh;
-  height: 100%;
+
+  height: 100vh;
   background-color: $black;
   justify-content: flex-end;
   .visual-title{
     color:$white;
+  }
+
+  .is-main & {
+    
+    height: 100%;
   }
   @include media-laptop-up{
     .visual-title{
@@ -231,8 +236,6 @@
       isolation: isolate;
       transform: rotate(-90deg);
     }
-
-
     display: block;
     min-height: auto;
   }
@@ -242,6 +245,9 @@
   .inner{
     @include grid-container(null, null , 20);
     height: auto;
+  }
+  .summary-text{
+    margin-bottom: rem(10);
   }
   .swiper.project-swiper{
     border-top: 1px solid $border-color;
@@ -328,6 +334,19 @@
       visibility: hidden;
       pointer-events: none;
     }
+
+    &:not(.swiper-slide){
+      border-top: 1px solid $border-color;
+      padding:rem(14) 0;
+      .description-wrapper{
+        .right-side, .date-side{
+          display: none;
+        }
+      }
+      &:last-child{
+        border-bottom:1px solid $border-color;
+      }
+    }
   }
 
   @include media-tablet-up{
@@ -351,6 +370,13 @@
       }
       &:last-child{
         border-bottom: 1px solid $border-color;
+      }
+      &:not(.swiper-slide){
+        .description-wrapper{
+          .right-side, .date-side{
+            display: block;
+          }
+        }
       }
     }
   }

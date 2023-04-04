@@ -93,18 +93,18 @@
 }
 
 .logo-area {
+  @include hstack(null);
   position: relative;
   height: $header-height;
 
   .logo-wrapper {
-    transform: translateY(rem(200));
-
     small {
       font : {
         weight: bold;
+        
       }
 
-      display: block;
+      display: none;
       // margin-bottom: rem(16);
     }
 
@@ -112,31 +112,39 @@
       content: '';
       padding-bottom: 100%;
     }
-
-    [data-active ="logo"] &{
-      small{
-        opacity: 0;
-        height: 0;
-        font : {
-          size: rem(16)
-        }
-      }
-    }
   }
 
   @include media-mobile-up {
     flex-grow: 1;
     height: $header-height-lg;
     width: 50%;
+  }
 
+  .is-main & {
+    display: block;
     .logo-wrapper {
+      transform: translateY(rem(200));
+
       small {
+        display: block;
+
         font : {
-          size: $fs-lg;
+          size: rem(16)
         }
+      }
+    }
 
-        // margin-bottom: rem(26);
 
+    @include media-mobile-up {
+      .logo-wrapper {
+        small {
+          font : {
+            size: $fs-lg;
+          }
+
+          // margin-bottom: rem(26);
+
+        }
       }
     }
   }
@@ -169,30 +177,39 @@
 .main-logo {
   @extend %logo;
 
-  font : {
-    size: rem(50);
-    weight: $fw-bold;
-  }
 
-  width: fit-content;
-  word-break: keep-all;
-  line-height:1.1;
-  @include media-mobile-up {
+  .is-main & {
     font : {
-      size: rem(100);
+      size: rem(50);
       weight: $fw-bold;
     }
+
+    width: fit-content;
+    word-break: keep-all;
+    line-height:1.1;
+
+    @include media-mobile-up {
+      font : {
+        size: rem(100);
+        weight: $fw-bold;
+      }
+    }
+  }
+
+  font : {
+    size: rem(20);
   }
 }
 
 .sub-logo {
   @extend %logo;
-  opacity: 0;
+
   color: $dark-gray;
   position: relative;
   margin-left: rem(10);
   padding-left: rem(10);
   transition: opacity 0.3s;
+
   font : {
     size: 14px;
   }
@@ -208,8 +225,8 @@
     transform: translateY(-50%);
   }
 
-  [data-active ="logo"] &{
-    opacity: 1;
+  .is-main & {
+    opacity: 0;
   }
 }
 
@@ -318,5 +335,3 @@
     }
   }
 }
-
-

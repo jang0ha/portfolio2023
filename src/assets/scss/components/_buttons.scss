@@ -77,3 +77,42 @@ button:focus{
   }
   margin-left: auto;
 }
+
+
+.detail-view-button{
+  font : {
+    size: rem(16);
+  }
+  position: relative;
+  &::before{
+    content: '';
+    display: inline-block;
+    width: 150%;
+    height: 1px;
+    background-color: $black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.3s;
+  }
+  &::after{
+    content:'';
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background-color: $black;
+    position: absolute;
+    right: -50%;
+    bottom: 4px;
+    transform:  rotate(45deg);
+    transition: all 0.3s;
+  }
+  &:hover, &:focus{
+    &::before{
+      width: 180%;
+    }
+    &::after{
+      right:-80%;
+    }
+  }
+}
