@@ -90,8 +90,8 @@ var About = {
       })
     },
       {
-        threshold: 1,
-        rootMargin : '-30% 0px 0px 0px'
+        threshold: [0.8, 1]
+        // rootMargin : '-30px 0px 0px 0px'
       }
     )
 

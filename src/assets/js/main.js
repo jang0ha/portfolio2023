@@ -1,5 +1,24 @@
 let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty("--vh", `${vh}px`);
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+// We listen to the resize event
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+
+// 모바일 체크
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+
+ScrollTrigger.saveStyles(".is-main .main-logo, .logo-area .logo-wrapper");
+
+
 
 function saveStyles(elements) {
   let styles, matchedMedia;
@@ -15,6 +34,9 @@ function saveStyles(elements) {
   ScrollTrigger.addEventListener("refresh", () => matchedMedia || elements.forEach((el, i) => el.style.cssText = styles[i]));
 }
 
+
+
+// ============= SMOOTH SCROLL AT ANCHOR FOR MOBILE ==============
 
 let breakpoint = window.matchMedia("(min-width:992px)").matches;
 $(window).resize(function () {
@@ -41,8 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-ScrollTrigger.saveStyles(".main-logo", ".logo-area .logo-wrapper");
 
 // breackpoint정의
 let mm = gsap.matchMedia(),
@@ -76,20 +96,55 @@ mm.add({
   // 모바일 일떄
   if (isMobile) {
     body.setAttribute("data-device", "isMobile");
+    // 모바일 장치로 접속일때
+    if (isMobileDevice()) {
+      console.log('모바일');
+    }
   }
 
   // pc 일떄
   if (isDesktop) {
     body.setAttribute("data-device", "isDesktop");
-    console.log('pc')
-    projectHover();
+
+    // 모바일 장치로 접속이 아닐떄
+    if (!isMobileDevice()) {
+
+      gsap.set('.project-item .thumb-img', {
+        yPercent: -50,
+        xPercent: -50
+      })
+    
+      gsap.utils.toArray(".project-item").forEach((el) => {
+        const image = el.querySelector('.thumb-img'),
+          setX = gsap.quickSetter(image, "x", "px"),
+          setY = gsap.quickSetter(image, "y", "px"),
+          align = e => {
+            setX(e.clientX);
+            setY(e.clientY);
+          },
+          startFollow = () => document.addEventListener("mousemove", align),
+          stopFollow = () => document.removeEventListener("mousemove", align),
+          fade = gsap.to(image, {
+            autoAlpha: 1,
+            ease: "none",
+            paused: true,
+            onReverseComplete: stopFollow
+          });
+    
+        el.addEventListener('mouseenter', (e) => {
+          fade.play();
+          startFollow();
+          align(e);
+        });
+    
+        el.addEventListener('mouseleave', () => fade.reverse());
+      });
+    
+    } 
+
   }
 
-
-  ///////////////
   logoEvent();
-  ////////////////
-
 
   //로고 이동 이벤트
   function logoEvent() {
@@ -130,46 +185,12 @@ mm.add({
           duration: 1
         }, "+=0.5")
   }
-  // 프로젝트 호버 이미지
-  function projectHover() {
-    let projectItemEl = document.querySelectorAll('.project-item');
-    var myProject = undefined;
-    console.log('제발')
 
-    gsap.set('.project-item .thumb-img', {
-      yPercent: -50,
-      xPercent: -50
-    })
-    
-    gsap.utils.toArray(".project-item").forEach((el) => {
-      const image = el.querySelector('.thumb-img'),
-        setX = gsap.quickSetter(image, "x", "px"),
-        setY = gsap.quickSetter(image, "y", "px"),
-        align = e => {
-          setX(e.clientX);
-          setY(e.clientY);
-        },
-        startFollow = () => document.addEventListener("mousemove", align),
-        stopFollow = () => document.removeEventListener("mousemove", align),
-        fade = gsap.to(image, {
-          autoAlpha: 1,
-          ease: "none",
-          paused: true,
-          onReverseComplete: stopFollow
-        });
-    
-      el.addEventListener('mouseenter', (e) => {
-        fade.play();
-        startFollow();
-        align(e);
-      });
-    
-      el.addEventListener('mouseleave', () => fade.reverse());
-    
-    });
-    
-  }
 
 })
-
-
+// 프로젝트 호버 이미지
+function projectHover() {
+  let projectItemEl = document.querySelectorAll('.project-item');
+  var myProject = undefined;
+  
+}

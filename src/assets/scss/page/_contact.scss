@@ -6,8 +6,8 @@
 }
 
 .touch-wrap{
+  @include card(60, 10);
   background-color: $white;
-  border-radius: $border-radius-md;
   width: 95%;
   margin: auto;
   .description-wrapper{

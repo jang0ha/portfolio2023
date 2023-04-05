@@ -39,7 +39,10 @@
 
 
 .card{
-  @include card(null, null);
+  @include card(20, 20);
+  @include media-mobile-up{
+    padding: rem(40);
+  }
 }
 
 //text-color variation

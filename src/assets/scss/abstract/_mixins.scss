@@ -243,7 +243,7 @@ $path-image : '../images/';
 
 // 카드 형태 단위
 @mixin card($paddiing-y, $paddiing-x) {
-  border: 1rem solid $border-color;
+  // border: 1rem solid $border-color;
   border-radius: $border-radius-md;
   padding : #{$paddiing-y}rem #{$paddiing-x}rem;
 }
