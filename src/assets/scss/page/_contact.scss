@@ -13,13 +13,20 @@
   .description-wrapper{
     gap: rem(120);
   }
-  h1{
-    font : {
-      size:rem(30);
-    }
-    margin-top: rem(30);
+  .main-title-wrap{
+    border: 0;
+    padding: 0;
+    .title{
+      font : {
+        size:rem(30);
+        weight:$fw-normal;
+      }
+      margin-top: rem(30);
     margin-bottom: rem(16);
+    }
   }
+
+
   p{
     font : {
       size: rem(20);
@@ -28,7 +35,7 @@
   }
 
   @include media-tablet-up{
-    padding-bottom:rem(200);
+    padding:rem(200) 0 ;
     .description-wrapper{
       gap: rem(200);
       text-align: center;
@@ -47,14 +54,16 @@
       }
     }
 
-    h1{
-      font : {
-        size:$fs-xxl;
-        // size:4vw;
+    .main-title-wrap{
+      .title{
+        font : {
+          size:$fs-xxl;
+        }
+        margin-top: rem(60);
+        margin-bottom: rem(40);
       }
-      margin-top: rem(60);
-      margin-bottom: rem(40);
     }
+   
     p{
       font : {
         size: rem(50);
@@ -69,7 +78,7 @@
   @include button();
   width: fit-content;
   background-color: $black;
-  color: $white;;
+  color: $white;
 
   @include media-tablet-up{
     width: fit-content;

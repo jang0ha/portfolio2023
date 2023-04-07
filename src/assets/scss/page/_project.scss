@@ -12,7 +12,10 @@
     position: relative;
     transition: all 0.3s;
     &.active{
-      color:$white;
+      color:$black;
+      font: {
+        weight:$fw-bold;
+      }
       &::after{
         content:'';
         position: absolute;
@@ -44,9 +47,6 @@
 // 디테일 페이지
 .project-detail-section {
   padding: 0;
-  @include media-mobile-up{
-    padding-top: rem(80);
-  }
 }
 .project-detail-wrap{
   padding-top: 0;
@@ -133,3 +133,28 @@
   }
 }
 // 디테일 페이지 끝
+
+
+.is-project{
+  .project-section{
+    background-color: transparent;
+  }
+
+  .project-list{
+    >li{
+      a{
+        color:$black;
+        .title{
+          color:$black;
+          &::after{
+            background: svg-image(outlink, 111) no-repeat center;
+            background-size: contain;
+          }
+        }
+      }
+    }
+  }
+
+  @include media-mobile-up{
+  }
+}

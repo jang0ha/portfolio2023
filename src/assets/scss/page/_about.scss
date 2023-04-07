@@ -3,124 +3,21 @@
 
 
 .section-service{
- 
   .card{
     padding:rem(40) rem(20);
   }
   @include media-tablet-up{
     .card{
-      padding:rem(80);
-    }
-    .desc{
-      font : {
-        size :$fs-lg;
-      }
+      padding:rem(60) rem(40);
     }
   }
 
 }
 
-.my-service-info {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  background-color :$yellow;
-  position: relative;
-  height: calc(100vh - 100rem - $header-height);
-  width: 100%;
-  small{
-    font : {
-      size: $fs-sm;
-    }
-    display: block;
-    color:$success;
-    margin-top: rem(100);
-  }
-  .main-title{
-    font : {
-      size: $fs-lg;
-      weight: $fw-normal;
-    }
-    line-height: 1.2;
-  }
-  p{
-    font : {
-      size: $fs-md;
-    }
-    margin-bottom: 0;
-  } 
-  .scroll-container{
-    width: 240px;
-    height: 240px;
-    position: absolute;
-    top: -3%;
-    right: -90px;
-    i{
-      width: 240px;
-      height: 240px;
-      background-size: contain;
-    }
-    .scroll{
-      @include hstack(null);
-      color: $success;
-      justify-content: center;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      position: absolute;
-      background-color: $black;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  @include media-tablet-up{
-    height: 85vh;
-    .scroll-container{
-      display: block;
-      width: 15vw;
-      height: 15vw;
-      position: absolute;
-      right: rem(60);
-      bottom:  rem(-60);
-      top: auto;
-      i{
-        width: 15vw;
-        height: 15vw;
-      }
-      .scroll{
-        width: 8vmax;
-        height: 8vmax;
-      }
-    }
-    .desc{
-      max-width: 80%;
-      padding:rem(60) 0;
-    }
-    small{
-      display: block;
-      font : {
-        size: $fs-lg;
-        weight:bold;
-      }
-    }
-    .main-title{
-      font : {
-        size: 5vmax;
-      }
-      strong {
-        font : {
-          weight : $fw-bold;
-        }
-      }
-    }
-    p{
-      font : {
-        size:$fs-lg;
-        weight:bold;
-      }
-      
-    } 
+.my-service-wrap{
+  @include media-laptop-up{
+    width: 80%;
+    margin-left: auto;
   }
 }
 
@@ -135,22 +32,25 @@
 
   &__left {
     .card {
-      @include vstack(60);
+      @include vstack(40);
       width: 100%;
-      background-color: rgb(231 231 231 / 47%);
+      // background-color: rgb(231 231 231 / 47%);
       position: relative;
+      border-top: 1px solid $border-color;
+      border-radius: 0;
 
     }
     .desc{
       small{
-        color:$success;
+        // color:$success;
         margin-bottom: rem(20);
         display: block;
         font : {
           weight: bold;
         }
       }
-      color:$success;
+      // color:$success;
+
     }
   }
 
@@ -159,15 +59,21 @@
   }
 
   .card {
-    min-height: rem(300);
+    min-height: rem(200);
   }
 
   @include media-tablet-up {
-    grid-template-columns :repeat(2, 1fr) ;
-    gap: rem(30);
+    grid-template-columns :2fr 1fr;
+    border-top: 1px solid $border-color;
+    &:first-child{
+      border: 0;
+    }
     &__left{
       .card{
         flex-direction: row;
+        border-radius: 0;
+        background-color: transparent;
+        border: 0;
         &::after{
           content: '';
           width: rem(100);
@@ -179,6 +85,9 @@
           z-index:-1 ;
           display: none;
         }
+        i{
+          flex:none;
+        }
       }
     }
 
@@ -186,21 +95,22 @@
       display: block;
       .card {
         @include vstack(14);
-        background-color: $white;
+        // background-color: #ffffff20;
+        background-color:  #f5f5f536;
         height: 100%;
         width: 100%;
-        justify-content: center;
-        box-shadow: $box-shadow-lg;
+        // box-shadow: $box-shadow-lg;
+        backdrop-filter: blur(11px);
         small{
-          color:$success;
+          
           font : {
             size: $fs-lg;
           }
         }
-        h2{
+        .title{
           font : {
-            size: 3vmax;
             weight:$fw-extra;
+            size: $fs-lg;
           }
         }
       }
@@ -215,10 +125,12 @@
 .my-summary-wrap{
   @include card(20, 20);
   @include vstack(20);
-  background-color: $red;
+  background-color: $black;
   overflow: hidden;
   width: 100%;
   position: relative;
+  // mix-blend-mode: color-burn;
+  // isolation: isolate;
 
   .left-top{
     font: {
@@ -230,6 +142,7 @@
     width: 100%;
     position: relative;
     padding-right: 24px;
+    color:$white;
     &::after{
       content:'';
       background: svg-image(plane, fff)no-repeat center;
@@ -247,6 +160,12 @@
   }
   .my-summary-text{
     @include hstack(30);
+    strong{
+      @include text-outline(1, $gray);
+    }
+    span{
+      color:$gray;
+    }
   }
 
   .my-hover{

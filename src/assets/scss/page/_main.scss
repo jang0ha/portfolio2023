@@ -78,7 +78,8 @@
         font : {
           size: 5vmax;
         }
-        border-bottom: 1px solid $white;
+        text-align: right;
+        width: 100%;
       }
     }
   }
@@ -101,6 +102,7 @@
     figure{
       .description{
         padding:rem(60) rem(30) rem(120);
+        justify-content: flex-end;
         font : {
           size:rem(50);
         }
@@ -109,7 +111,7 @@
         }
         .bottom{
           font : {
-            size: 5vmax;
+            size: 4vmax;
           }
         }
       }
@@ -137,6 +139,13 @@
       position: absolute;
       top: -10vmax;
       box-shadow:$box-shadow-lg-up !important;
+    }
+
+    .main-title-wrap{
+      width: 80vw;
+      margin-right: auto;
+      margin-top: rem(120);
+      text-align: right;
     }
   }
 }
@@ -253,33 +262,21 @@
   height: 100vh;
   background-color: $black;
   justify-content: flex-end;
-  .visual-title{
-    color:$white;
-
-  }
-
   .is-main & {
     height: 100%;
+    .main-title-wrap{
+      color:$white;
+      margin-bottom: rem(60);
+      border: 0;
+      width: 80%;
+      margin-left: auto;
+    }
   }
   @include media-laptop-up{
-    .visual-title{
-      font : {
-        size: 8vmax;
-      }
-      mix-blend-mode: difference;
-      isolation: isolate;
-      transform: rotate(-90deg);
-    }
-    display: block;
-    min-height: auto;
   }
 }
 .project-wrap{
   padding:0;
-  .inner{
-    @include grid-container(null, null , 20);
-    height: auto;
-  }
   .summary-text{
     margin-bottom: rem(10);
   }
@@ -302,10 +299,8 @@
   @include media-tablet-up{
     height: auto;
     padding: rem(80) 0;
-
-    .inner{
-      grid-template-columns: 20% 1fr;
-    }
+    width: 80%;
+    margin-left: auto;
     .summary-text{
       text-align: right;
     }
@@ -363,7 +358,7 @@
 
     &:not(.swiper-slide){
       border-top: 1px solid $border-color;
-      padding:rem(14) 0;
+      padding:rem(30) 0;
       .description-wrapper{
         .right-side, .date-side{
           display: none;
@@ -486,6 +481,9 @@
         background: svg-image(#{$key-name}, 111) no-repeat center;
         background-size: contain;
       }
+    }
+    a{
+      display: block;
     }
   }
   @include media-mobile-up{
