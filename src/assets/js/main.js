@@ -10,11 +10,6 @@ window.addEventListener('resize', () => {
 });
 
 
-// 모바일 체크
-function isMobileDevice() {
-  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-};
-
 
 ScrollTrigger.saveStyles(".is-main .main-logo, .logo-area .logo-wrapper");
 
@@ -109,36 +104,7 @@ mm.add({
     // 모바일 장치로 접속이 아닐떄
     if (!isMobileDevice()) {
 
-      gsap.set('.project-item .thumb-img', {
-        yPercent: -50,
-        xPercent: -50
-      })
-    
-      gsap.utils.toArray(".project-item").forEach((el) => {
-        const image = el.querySelector('.thumb-img'),
-          setX = gsap.quickSetter(image, "x", "px"),
-          setY = gsap.quickSetter(image, "y", "px"),
-          align = e => {
-            setX(e.clientX);
-            setY(e.clientY);
-          },
-          startFollow = () => document.addEventListener("mousemove", align),
-          stopFollow = () => document.removeEventListener("mousemove", align),
-          fade = gsap.to(image, {
-            autoAlpha: 1,
-            ease: "none",
-            paused: true,
-            onReverseComplete: stopFollow
-          });
-    
-        el.addEventListener('mouseenter', (e) => {
-          fade.play();
-          startFollow();
-          align(e);
-        });
-    
-        el.addEventListener('mouseleave', () => fade.reverse());
-      });
+
     
     } 
 
@@ -192,5 +158,57 @@ mm.add({
 function projectHover() {
   let projectItemEl = document.querySelectorAll('.project-item');
   var myProject = undefined;
-  
+  gsap.set('.project-item .thumb-img', {
+    yPercent: -50,
+    xPercent: -50
+  })
+
+  gsap.utils.toArray(".project-item").forEach((el) => {
+    const image = el.querySelector('.thumb-img'),
+      setX = gsap.quickSetter(image, "x", "px"),
+      setY = gsap.quickSetter(image, "y", "px"),
+      align = e => {
+        setX(e.clientX);
+        setY(e.clientY);
+      },
+      startFollow = () => document.addEventListener("mousemove", align),
+      stopFollow = () => document.removeEventListener("mousemove", align),
+      fade = gsap.to(image, {
+        autoAlpha: 1,
+        ease: "none",
+        paused: true,
+        onReverseComplete: stopFollow
+      });
+
+    el.addEventListener('mouseenter', (e) => {
+      fade.play();
+      startFollow();
+      align(e);
+    });
+
+    el.addEventListener('mouseleave', () => fade.reverse());
+  });
 }
+
+
+// 어바웃
+let activeTextEls = document.querySelectorAll(".active-text");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    // console.log(entry) // entry is 'IntersectionObserverEntry'
+    // 가시성의 변화가 있으면 관찰 대상 전체에 대한 콜백이 실행되므로,
+    // 관찰 대상의 교차 상태가 false일(보이지 않는) 경우 실행하지 않음.
+    if (!entry.isIntersecting) {
+      entry.target.classList.remove("active");
+      return
+    }
+    // 관찰 대상의 교차 상태가 true일(보이는) 경우 실행.
+    entry.target.classList.add("active");
+  })
+},
+  {
+    threshold: [1.0]
+    // rootMargin : '-30px 0px 0px 0px'
+  }
+)
+activeTextEls.forEach(el => io.observe(el))

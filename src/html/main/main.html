@@ -9,11 +9,13 @@
   <div id="wrap">
     @@include('@@webRoot/html/_include/_header.html', {"main": true})
     <main id="container">
+      <h1 class="visually-hidden">장영하 포트폴리오</h1>
       <!-- 히어로 섹션 -->
-      <section id="hero-section" class="section hero-section">
+      <section id="hero-section" class="section hero-section" aria-label="hero">
+        <h2 class="visually-hidden">Summary</h2>
         <article class="hero-wrap">
+          <h3 class="visually-hidden">basic skills</h3>
           <div class="inner">
-            <h1 class="visually-hidden">장영하 포트폴리오</h1>
             <div class="description-wrapper">
               <ul class="left-description description">
                 <li># 웹 표준</li>
@@ -30,13 +32,12 @@
           </div>
         </article>
         <article class="visual-img-wrap">
+          <h3 class="visually-hidden">basic self introduce</h3>
           <div class="inner">
             <figure>
               <img src="@@webRoot/assets/images/img-main-visual.png" alt="비주얼 이미지">
               <div class="description">
-                <p class="top">안녕하세요 저는 웹퍼블리셔!</p>
-                <p class="middle">장영하 입니다. </p>
-                <p class="bottom">만나서 반가워요 :)</p>
+                <a href="#none" class="bottom">I make it happen exciting Websites.</a>
               </div>
             </figure>
           </div>
@@ -45,20 +46,21 @@
       <!-- 히어로 섹션 끝 -->
 
       <!-- 어바웃 섹션 -->
-      <section id="about-section" class="section about-section">
-        <article class="about-wrap">
+      <section id="about-section" class="section about-section" aria-label="about">
+        <div class="about-wrap">
           <div class="inner">
-            <h2 class="visual-title">Is Your <span class="text-black">Best</span><br>
-              business <span class="text-black">partner.</span></h2>
+            <h2>
+              Insight
+            </h2>
             <div class="about-wrapper">
               <div class="left-container">
-                <p>
+                <h3>
                   저는 <br>
                   남다른 꼼꼼함과 <br>
                   습득력으로,<br><br>
                   새로운 디지털 트렌드를<br>
                   제공하려고 노력합니다.
-                </p>
+                </h3>
                 <a href="" title="이동" class="btn btn-dark-gray">About Me</a>
               </div>
               <div class="right-container">
@@ -85,16 +87,17 @@
               </div>
             </div>
           </div>
-        </article>
+        </div>
       </section>
       <!-- 어바웃 섹션 끝 -->
 
       <!-- 프로젝트 섹션  -->
-      <section id="project-section" class="section project-section">
+      <section id="project-section" class="section project-section" aria-label="project">
+        <h2 class="visually-hidden">Project</h2>
         <article class="project-wrap">
           <div class="inner">
             <div class="title-wrapper">
-              <h2 class="visual-title">Project</h2>
+              <strong class="visual-title">Project</strong>
             </div>
             <div class="project-list-wrapper">
               <p class="summary-text text-white">**전체 프로젝트 진행 개월 수(시작~종료) / 투입 인원 / 기여도 </p>
@@ -240,26 +243,24 @@
       <!-- 프로젝트 섹션 끝 -->
 
       <!-- 컨텍트 섹션 -->
-      <section id="contact-section" class="section contact-section">
-        <article class="contact-wrap">
-          <div class="inner">
+      <section id="contact-section" class="section contact-section" aria-label="contact">
+        <div class="inner">
+          <div class="contact-wrap">
             <div class="description-wrapper">
-              <div class="side title-area">
+              <div class="main-title-wrap side title-area">
                 <h2>
                   창의적이고<br>
                   도전적인 프로젝트를<br>
                   기다립니다<span class="text-white">.</span>
                 </h2>
-
                 <a href="" title="이동" class="btn btn-dark-gray">Contact me</a>
               </div>
-              <div class="side description">
+              <article class="side description">
                 <h3>✺ 보유 기술 Possess Skills</h3>
                 <ul class="disc-style">
                   <li>HTML / CSS / SASS / JAVASCRIPT / JQUERY </li>
                   <li>FIGMA / ILLASTRAION / PHOTOSHOP/ XD / ZEPLIN </li>
                 </ul>
-
                 <ul class="tag-list">
                   <li># UI Development</li>
                   <li># For Users</li>
@@ -267,25 +268,24 @@
                   <li># Markup</li>
                   <li># ​Self Development</li>
                 </ul>
-              </div>
-              <div class="side description">
+              </article>
+              <article class="side description">
                 <h3>✺ 관심 기술 Interested Skills</h3>
                 <ul class="disc-style">
                   <li>GSAP</li>
                 </ul>
-
                 <ul class="icon-list" role="navigation">
                   <li>
-                    <button type="button" class="github-button"></button>
+                    <a href="https://github.com/jang0ha" target="_blank" title="깃허브로 새창이동" class="github-button"></a>
                   </li>
                   <li>
                     <button type="button" class="notion-button"></button>
                   </li>
                 </ul>
-              </div>
+              </article>
             </div>
           </div>
-        </article>
+        </div>
       </section>
       <!-- 컨텍트 섹션 끝 -->
 

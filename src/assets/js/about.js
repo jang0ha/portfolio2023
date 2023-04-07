@@ -72,4 +72,29 @@ marquee.forEach((item, index) => {
     },
     repeat: -1
   });
+
+  tl2.fromTo(item, {
+    scale: 0.8,
+    duration: 0.65,
+    ease: "Power2.easeOut",
+    },
+  { 
+    scale: 1,
+    duration: 0.65,
+    ease: "Power2.easeOut",
+  }, 0);
+
+  $( ".my-summary-wrap" ).hover(
+    function() {
+      $(this).addClass( "-visible" );
+      tl.pause();
+      tl2.pause();
+    }, function() {
+      $(this ).removeClass( "-visible" );
+      tl2.play(0);
+      tl2.play();
+      tl.play();
+    }
+  );
+  
 });

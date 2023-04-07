@@ -11,6 +11,7 @@ html {
   line-height: 1.285;
   font-size: 0.26666666666666665vw; //10
   transition:  font-size 0.2s;
+  width: 100%;
   &.stop-scroll{
     body{
         //  position: fixed;
@@ -26,6 +27,7 @@ body{
   overflow-x: hidden;
   transition:  font-size 0.2s;
   background-color:  #e5e5e561;
+  width: 100%;
 }
 
 

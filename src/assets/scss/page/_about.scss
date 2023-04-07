@@ -3,6 +3,7 @@
 
 
 .section-service{
+ 
   .card{
     padding:rem(40) rem(20);
   }
@@ -25,6 +26,8 @@
   align-items: flex-end;
   background-color :$yellow;
   position: relative;
+  height: calc(100vh - 100rem - $header-height);
+  width: 100%;
   small{
     font : {
       size: $fs-sm;
@@ -47,9 +50,32 @@
     margin-bottom: 0;
   } 
   .scroll-container{
-    display: none;
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    top: -3%;
+    right: -90px;
+    i{
+      width: 240px;
+      height: 240px;
+      background-size: contain;
+    }
+    .scroll{
+      @include hstack(null);
+      color: $success;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: $black;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
   @include media-tablet-up{
+    height: 85vh;
     .scroll-container{
       display: block;
       width: 15vw;
@@ -57,23 +83,14 @@
       position: absolute;
       right: rem(60);
       bottom:  rem(-60);
+      top: auto;
       i{
         width: 15vw;
         height: 15vw;
-        background-size: contain;
       }
       .scroll{
-        @include hstack(null);
-        color: $success;
-        justify-content: center;
         width: 8vmax;
         height: 8vmax;
-        border-radius: 50%;
-        position: absolute;
-        background-color: $black;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
       }
     }
     .desc{
@@ -120,7 +137,7 @@
     .card {
       @include vstack(60);
       width: 100%;
-      background-color: $black;
+      background-color: rgb(231 231 231 / 47%);
       position: relative;
 
     }
@@ -147,6 +164,7 @@
 
   @include media-tablet-up {
     grid-template-columns :repeat(2, 1fr) ;
+    gap: rem(30);
     &__left{
       .card{
         flex-direction: row;
@@ -191,23 +209,71 @@
   }
 }
 
-
+.section-contact{
+  padding:0;
+}
 .my-summary-wrap{
   @include card(20, 20);
-  background-color: $white;
-  overflow: hidden;
   @include vstack(20);
+  background-color: $red;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+
   .left-top{
+    font: {
+      size: $fs-lg;
+      weight:bold;
+    }
     display: block;
     margin-bottom: rem(20);
-    font: {
-      weight:bold;
+    width: 100%;
+    position: relative;
+    padding-right: 24px;
+    &::after{
+      content:'';
+      background: svg-image(plane, fff)no-repeat center;
+      width: fit-content;
+      height: 24px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      display: inline-flex;
+      color: #fff;
+      background-size: contain;
+      padding-right: 60px;
+      transform: translateY(-50%);
     }
   }
   .my-summary-text{
     @include hstack(30);
   }
-  h2{
+
+  .my-hover{
+    @include hstack(20);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    strong{
+      font : {
+        size: $fs-xl;
+      }
+      color:#fffbd1;
+    }
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .my-plane{
+    background: svg-image(plane, fffbd1) no-repeat center;
+    background-size: contain;
+    width: rem(24);
+    height: rem(24);
+  }
+  strong{
     display: flex;
     flex: none;
     padding: rem(20) 0;
@@ -215,5 +281,91 @@
 
   @include media-tablet-up{
     @include card(40, 40);
+    padding-bottom:rem(120);
+    .left-top{
+      font: {
+        size: $fs-xl;
+      }
+      padding: 0;
+      &::after{
+        display: none;
+      }
+    }
+    .my-hover{
+      strong{
+        font : {
+          size: $fs-xxl;
+        }
+      }
+    }
+    .my-plane{
+      width: rem(56);
+      height: rem(56);
+    }
+
+    .my-shape{
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 32%;
+      left: 43%;
+      animation: 20s linear infinite rotate;
+      opacity: 0.2;
+      transition: all 0.3s;
+      transform:  translate(-50%, -50%);
+      >*{
+        position: absolute;
+        animation: 10s linear infinite rotate;
+      }
+      .triangle{
+        --size:33px;
+        width: 0;
+        height: 0;
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-bottom : 60px solid #A5A1FF;
+        left: 35%;
+      }
+      .circle{
+        --size:60px;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background-color: #d1fff7;
+        transform:translateY(-50%);
+        bottom: 0;
+      }
+      .square{
+        --size:50px;
+        width: var(--size);
+        height:var(--size);
+        background-color: $white;
+        right: -10px;
+        bottom: 0;
+      }
+    }
+  }
+
+  &.-visible{
+    .my-hover{
+      opacity: 1;
+      visibility: visible;
+    }
+    .my-summary-text{
+      opacity: 0;
+      visibility: hidden;
+    }
+    .my-shape{
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

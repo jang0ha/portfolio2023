@@ -35,8 +35,13 @@
     line-height: rem(150);
     // margin :rem(80) 0 rem(80) 0;
   }
+}
 
-
+.main-title-wrap{
+  padding:rem(40) 0 0 0;
+  @include media-mobile-up{
+    padding:rem(120) 0 0 0;
+  }
 }
 
 .visual-title{
@@ -44,6 +49,7 @@
     size : rem(48);
   }
   // text-shadow: text-outline($border-color);
+  display: block;
   @include text-outline(1, $black);
   line-height: 1.1;
   color:transparent;

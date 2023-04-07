@@ -15,13 +15,16 @@ var Init = {
   resize: function () {
     Init.getBrowserSize();
     Init.drawBreakPoint();
+    Init.drawBreakPoint();
     Init.breakpoint = window.matchMedia("(min-width:992px)").matches;
     if (!Init.breakpoint) {
       html.classList.remove("desktop");
       html.classList.add("mobile");
+      Init.checkDevice();
     } else {
       html.classList.remove("mobile");
       html.classList.add("desktop");
+      html.removeAttribute("data-device");
       if (body.classList.contains('open-menu')) {
         body.classList.remove('open-menu');
         playScroll();
@@ -37,6 +40,19 @@ var Init = {
     html.setAttribute("data-width", this.bodyWidth);
     html.setAttribute("data-height", this.bodyHeight);
   },
+  checkDevice: function () {
+    var varUA = navigator.userAgent.toLowerCase();
+
+    if (varUA.indexOf("android") > -1) {
+      html.setAttribute("data-device", "android");
+    } else if (varUA.indexOf("iphone") > -1 || varUA.indexOf("ipad") > -1 || varUA.indexOf("ipod") > -1) {
+      //IOS
+      html.setAttribute("data-device", "ios");
+    } else {
+      //아이폰, 안드로이드 외
+      html.setAttribute("data-device", "others");
+    }
+  }
 };
 
 
@@ -68,36 +84,6 @@ var Header = {
   },
 }
 
-
-//about 
-var About = {
-  activeTextEls: document.querySelectorAll(".active-text"),
-  init: function () {
-    this.observe();
-  },
-  observe: function () {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // console.log(entry) // entry is 'IntersectionObserverEntry'
-        // 가시성의 변화가 있으면 관찰 대상 전체에 대한 콜백이 실행되므로,
-        // 관찰 대상의 교차 상태가 false일(보이지 않는) 경우 실행하지 않음.
-        if (!entry.isIntersecting) {
-          entry.target.classList.remove("active");
-          return
-        }
-        // 관찰 대상의 교차 상태가 true일(보이는) 경우 실행.
-        entry.target.classList.add("active");
-      })
-    },
-      {
-        threshold: [0.8, 1]
-        // rootMargin : '-30px 0px 0px 0px'
-      }
-    )
-
-    About.activeTextEls.forEach(el => io.observe(el))
-  }
-}
 
 
 
@@ -158,7 +144,7 @@ var Common = {
 
 Init.defaults();
 Header.init();
-About.init();
+
 
 // --------------------------------------------------------------
 // --------------------------------------------------------------
@@ -171,3 +157,12 @@ function playScroll() {
 function stopScroll() {
   html.classList.add("stop-scroll");
 }
+
+
+// 모바일 체크
+function isMobileDevice() {
+  console.log('모바일 접속');
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+isMobileDevice() 
