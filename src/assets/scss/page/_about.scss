@@ -14,13 +14,6 @@
 
 }
 
-.my-service-wrap{
-  @include media-laptop-up{
-    width: 80%;
-    margin-left: auto;
-  }
-}
-
 .my-service-list-container{
   @include grid-container(1, null, 10);
   @include media-tablet-up{
@@ -197,6 +190,69 @@
     flex: none;
     padding: rem(20) 0;
   }
+  
+  .my-shape{
+    width: 100rem;
+    height: 100rem;
+    position: absolute;
+    top: 22%;
+    left: 36%;
+    animation: 20s linear infinite rotate;
+    opacity: 0.2;
+    transition: all 0.3s;
+    transform:  translate(-50%, -50%);
+    transform-origin: center;
+    >*{
+      position: absolute;
+      animation: 10s linear infinite rotate;
+    }
+    .triangle{
+      --size:6vw;
+      width: 0;
+      height: 0;
+      border-left: var(--size) solid transparent;
+      border-right: var(--size) solid transparent;
+      border-bottom : 11vw solid #A5A1FF;
+      left: 35%;
+    }
+    .circle{
+      --size:10vw;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background-color: #d1fff7;
+      transform:translateY(-50%);
+      bottom: 0;
+    }
+    .square{
+      --size:10vw;
+      width: var(--size);
+      height:var(--size);
+      background-color: $white;
+      right: -10px;
+      bottom: 0;
+    }
+  }
+  @include media-mobile-up{
+    .my-shape{
+      --size : 150px;
+      width: var(--size);
+      height: var(--size);
+      left: 43%;
+      top: 31%;
+   
+      .triangle{
+        --size:33px;
+        border-bottom : 60px solid #A5A1FF;
+      }
+      .circle{
+        --size:50px;
+      }
+      .square{
+        --size:50px;
+      }
+    }
+  }
 
   @include media-tablet-up{
     @include card(40, 40);
@@ -221,49 +277,8 @@
       width: rem(56);
       height: rem(56);
     }
-
-    .my-shape{
-      width: 150px;
-      height: 150px;
-      position: absolute;
-      top: 32%;
-      left: 43%;
-      animation: 20s linear infinite rotate;
-      opacity: 0.2;
-      transition: all 0.3s;
-      transform:  translate(-50%, -50%);
-      >*{
-        position: absolute;
-        animation: 10s linear infinite rotate;
-      }
-      .triangle{
-        --size:33px;
-        width: 0;
-        height: 0;
-        border-left: var(--size) solid transparent;
-        border-right: var(--size) solid transparent;
-        border-bottom : 60px solid #A5A1FF;
-        left: 35%;
-      }
-      .circle{
-        --size:60px;
-        width: var(--size);
-        height: var(--size);
-        border-radius: 50%;
-        background-color: #d1fff7;
-        transform:translateY(-50%);
-        bottom: 0;
-      }
-      .square{
-        --size:50px;
-        width: var(--size);
-        height:var(--size);
-        background-color: $white;
-        right: -10px;
-        bottom: 0;
-      }
-    }
   }
+
 
   &.-visible{
     .my-hover{
@@ -276,6 +291,7 @@
     }
     .my-shape{
       opacity: 1;
+      scale: 1.3;
     }
   }
 }

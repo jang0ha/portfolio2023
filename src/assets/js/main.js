@@ -11,7 +11,7 @@ window.addEventListener('resize', () => {
 
 
 
-ScrollTrigger.saveStyles(".is-main .main-logo, .logo-area .logo-wrapper");
+ScrollTrigger.saveStyles(".is-main");
 
 
 
@@ -19,14 +19,14 @@ function saveStyles(elements) {
   let styles, matchedMedia;
   elements = gsap.utils.toArray(elements);
   ScrollTrigger.saveStyles(elements);
-  ScrollTrigger.addEventListener("refreshInit", () => {
+  gsap.addEventListener("refreshInit", () => {
     matchedMedia = false;
     styles = elements.map(el => el.style.cssText);
   });
-  ScrollTrigger.addEventListener("matchMedia", () => {
+  gsap.addEventListener("matchMedia", () => {
     matchedMedia = true;
   })
-  ScrollTrigger.addEventListener("refresh", () => matchedMedia || elements.forEach((el, i) => el.style.cssText = styles[i]));
+  gsap.addEventListener("refresh", () => matchedMedia || elements.forEach((el, i) => el.style.cssText = styles[i]));
 }
 
 
@@ -86,77 +86,45 @@ mm.add({
 
   let ctx = gsap.context((context) => {});
   let projectItemEl = document.querySelectorAll('.project-item');
+  const visualLogo = gsap.timeline({
+    scrollTrigger: {
+      trigger: heroSection,
+      // 트리거 기준/ 뷰포트 기준
+      start: () => `-=${heroSection.offsetTop}`,
+      scrub: 1.1,
+      pin: true,
+      // pinSpacing: false, //핀 시 안컨테이너  위치 고정
+      markers: true,
+    },
+  });
 
 
-  // 모바일 일떄
-  if (isMobile) {
-    body.setAttribute("data-device", "isMobile");
-    // 모바일 장치로 접속일때
-    if (isMobileDevice()) {
-      console.log('모바일');
-    }
-  }
-
-  // pc 일떄
-  if (isDesktop) {
-    body.setAttribute("data-device", "isDesktop");
-
-    // 모바일 장치로 접속이 아닐떄
-    if (!isMobileDevice()) {
-
-
-    
-    } 
-
-  }
-
-  logoEvent();
-
-  //로고 이동 이벤트
-  function logoEvent() {
-    const visualLogo = gsap.timeline({
-      scrollTrigger: {
-        trigger: heroSection,
-        // 트리거 기준/ 뷰포트 기준
-        start: () => `-=${heroSection.offsetTop}`,
-        scrub: 1.1,
-        pin: true,
-        // pinSpacing: false, //핀 시 안컨테이너  위치 고정
-        markers: true,
-      },
-    });
-
-    visualLogo
-      .to(logoWrapperEl, {
-        y: isDesktop ? (80 - 23) / 2 : (60 - 27) / 2,
-      }, "-=1")
-      .to(mainLogoEl, {
-        // fontSize: `20rem`,
-        // fontSize : "".concat("20", "rem"),
-        fontSize: 20,
-        transformOrigin: "0 0",
-        duration: 1,
-        width: 'fit-content',
-      }, "-=1")
-      .to(subSmallEl, {
-        opacity: 0,
-        height: 0,
-        // fontSize: `16rem`,
-        // fontSize: "".concat("16", "rem"),
-        y: `-${subSmallEl.clientheight}`
-      }, "-=0.5")
-      .to(
-        subLogoEl, {
-          opacity: 1,
-          duration: 1
-        }, "+=0.5")
-  }
-
-
-})
-// 프로젝트 호버 이미지
-function projectHover() {
-  let projectItemEl = document.querySelectorAll('.project-item');
+  visualLogo
+    .to(logoWrapperEl, {
+      y: isDesktop ? (80 - 23) / 2 : (60 - 27) / 2,
+    }, "-=1")
+    .to(mainLogoEl, {
+      // fontSize: `20rem`,
+      // fontSize : "".concat("20", "rem"),
+      fontSize: 20,
+      transformOrigin: "0 0",
+      duration: 1,
+      width: 'fit-content',
+    }, "-=1")
+    .to(subSmallEl, {
+      opacity: 0,
+      height: "0px",
+      // fontSize: `16rem`,
+      // fontSize: "".concat("16", "rem"),
+      y: `-${subSmallEl.clientheight}`
+    },  "-=0.5")
+    .to(
+      subLogoEl, {
+        opacity: 1,
+        duration: 1
+    }, "+=0.5")
+  
+  // 프로젝트 호버 이미지
   var myProject = undefined;
   gsap.set('.project-item .thumb-img', {
     yPercent: -50,
@@ -188,7 +156,10 @@ function projectHover() {
 
     el.addEventListener('mouseleave', () => fade.reverse());
   });
-}
+
+
+})
+
 
 
 // 어바웃

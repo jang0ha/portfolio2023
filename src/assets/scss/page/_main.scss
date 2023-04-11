@@ -58,7 +58,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      justify-content: space-between;
+      justify-content:flex-end;
       a{
         display: block;
       }
@@ -66,20 +66,21 @@
         size : $fs-lg;
         weight : bold;
       }
-      // color:$white;
       text-shadow: -1px 0 $white, 0 1px $white, 1px 0 $white, 0 -1px $white;
       color:$black;
-      // border:1px solid $border-color;
       .top{
         opacity: 0;
       }
 
       .bottom{
         font : {
-          size: 5vmax;
+          size: 4vmax;
         }
         text-align: right;
         width: 100%;
+        position: absolute;
+        bottom: rem(20);
+        right: rem(30);
       }
     }
   }
@@ -96,7 +97,7 @@
       padding: 0 rem(20);
     }
     img{
-      height: 85vh;
+      height: 640px;
       border-radius: $border-radius;
     }
     figure{
@@ -160,9 +161,7 @@
 }
 .about-wrapper{
   @include grid-container(null, 1, 30);
-  margin-top: rem(40);
   position: relative;
-
   .left-container{
     @include vstack(40);
     h3{
@@ -225,7 +224,7 @@
   @include media-mobile-up{
     grid-template-columns: repeat(2, 1fr);
     gap: 6vmax;
-    margin-top: rem(150);
+  
     height:rem(800);
     .left-container{ 
       h3{
@@ -258,7 +257,6 @@
 
 .project-section{
   @include vstack(null);
-
   height: 100vh;
   background-color: $black;
   justify-content: flex-end;
@@ -266,17 +264,12 @@
     height: 100%;
     .main-title-wrap{
       color:$white;
-      margin-bottom: rem(60);
-      border: 0;
-      width: 80%;
-      margin-left: auto;
+      width: 100%;
     }
   }
-  @include media-laptop-up{
-  }
 }
+
 .project-wrap{
-  padding:0;
   .summary-text{
     margin-bottom: rem(10);
   }
@@ -296,11 +289,10 @@
       }
     }
   }
+
   @include media-tablet-up{
     height: auto;
     padding: rem(80) 0;
-    width: 80%;
-    margin-left: auto;
     .summary-text{
       text-align: right;
     }
@@ -320,7 +312,7 @@
   >li{
     width: 100%!important;
     display: block;
-    padding-top: rem(30);
+    padding:rem(30) 0;
     a{
       @include vstack(20);
       align-items: flex-start;
@@ -358,7 +350,7 @@
 
     &:not(.swiper-slide){
       border-top: 1px solid $border-color;
-      padding:rem(30) 0;
+      
       .description-wrapper{
         .right-side, .date-side{
           display: none;
@@ -374,7 +366,10 @@
     flex: 1 0 0%;
     >li{
       border-top: 1px solid $border-color;
-      padding-top: 0;
+      padding:0;
+      &.swiper-slide{
+        padding: 0;
+      }
       a{
         padding: rem(40) 0;
         .description-wrapper{
@@ -407,6 +402,7 @@
         border-bottom: 1px solid $border-color;
       }
       &:not(.swiper-slide){
+        padding: 0;
         .description-wrapper{
           .right-side, .date-side{
             display: block;
@@ -454,9 +450,6 @@
   }
   .description{
     margin-top: rem(20);
-    ul:not(.disc-style){
-      color:$light-gray;
-    }
   }
   .title-area{
     gap: rem(40);
@@ -466,9 +459,6 @@
         weight: $fw-bold;
       }
     }
-  }
-  .tag-list{
-    display: none;
   }
   .icon-list{
     @include hstack(16);
@@ -525,16 +515,9 @@
       margin-top:rem(30);
       margin-bottom:rem(30);
     }
-    .tag-list{
-      @include hstack(10);
-      font : {
-        size: rem(12)
-      }
-      row-gap: rem(4);
-      min-height: 40rem;
-      line-height: 1;
-      flex-wrap: wrap;
-    }
+  
   }
 }
 // 컨텍트 섹션 끝
+
+

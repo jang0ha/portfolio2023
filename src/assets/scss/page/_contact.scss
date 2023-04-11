@@ -1,10 +1,5 @@
 @use '../abstract/' as *;
 
-.touch-section{
-
-
-}
-
 .touch-wrap{
   @include card(60, 10);
   background-color: $white;
@@ -34,17 +29,17 @@
     color:$gray;
   }
 
-  @include media-tablet-up{
+  @include media-laptop-up{
     padding:rem(200) 0 ;
     .description-wrapper{
-      gap: rem(200);
+      gap: 10vmax;
       text-align: center;
       position: relative;
-      padding-top: rem(300);
+      padding-top: 10vmax;
       &::before{
         content: '';
         width: 1px;
-        height: 200px;
+        height:8vmax;
         background-color: $gray;
         position: absolute;
         top: 0;
@@ -57,7 +52,7 @@
     .main-title-wrap{
       .title{
         font : {
-          size:$fs-xxl;
+          size:4vmax;
         }
         margin-top: rem(60);
         margin-bottom: rem(40);
@@ -66,7 +61,7 @@
    
     p{
       font : {
-        size: rem(50);
+        size: 2vmax;
 
       }
     }
@@ -80,7 +75,7 @@
   background-color: $black;
   color: $white;
 
-  @include media-tablet-up{
+  @include media-laptop-up{
     width: fit-content;
     margin: auto;
     border-radius: 60px;
