@@ -1,5 +1,173 @@
 @use '../abstract/'as *;
 
+
+// 프로젝트 섹션
+
+.project-section{
+  @include vstack(null);
+  height: 100vh;
+  background-color: $black;
+  justify-content: flex-end;
+  .is-main & {
+    height: 100%;
+    .main-title-wrap{
+      color:$white;
+      width: 100%;
+    }
+  }
+}
+
+.project-wrap{
+  .summary-text{
+    margin-bottom: rem(10);
+  }
+  .swiper.project-swiper{
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    margin-top: rem(20);
+    padding-bottom: rem(40);
+    .swiper-pagination{
+      color: #5c5c5c;
+      right: 0;
+      left: auto !important;
+      display: inline-block;
+      width: auto;
+      .swiper-pagination-current{
+        color:$light-gray;
+      }
+    }
+  }
+
+  @include media-tablet-up{
+    height: auto;
+    padding: rem(80) 0;
+    .summary-text{
+      text-align: right;
+    }
+    .swiper.project-swiper{
+      border:0;
+      padding-bottom: 0;
+      overflow: visible;
+      .swiper-wrapper{
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.project-list{
+  >li{
+    width: 100%!important;
+    display: block;
+    padding:rem(30) 0;
+    a{
+      @include vstack(20);
+      align-items: flex-start;
+      color: $middle-gray;
+      padding: 0;
+      width: 100%;
+      position: relative;
+      .title{
+        font : {
+          size : rem(20);
+          weight: $fw-extra;
+        }
+        color:$white;
+        position: relative;
+        width: 100%;
+        &::after{
+          content:'';
+          display: block;
+          width: rem(16);
+          height: rem(16);
+          background: svg-image(outlink, fff)no-repeat center;
+          background-size: contain;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform:translateY(-50%);
+        }
+        .project-list-section & {
+          &::after{
+            display: none;
+          }
+        }
+      }
+    }
+
+    .thumb-img{
+      display: none;
+    }
+
+
+    &:not(.swiper-slide){
+      border-top: 1px solid $border-color;
+      
+      .description-wrapper{
+        .right-side, .date-side{
+          display: none;
+        }
+      }
+      &:last-child{
+        border-bottom:1px solid $border-color;
+      }
+    }
+  }
+
+  @include media-tablet-up{
+    flex: 1 0 0%;
+    >li{
+      border-top: 1px solid $border-color;
+      padding:0;
+      &.swiper-slide{
+        padding: 0;
+      }
+      a{
+        padding: rem(40) 0;
+        .description-wrapper{
+          grid-template-columns:1fr 1fr auto;
+          gap: rem(10);
+          .date-side{
+            font : {
+              size: rem(18);
+            }
+            margin-left: auto;
+            margin-top: rem(10);
+          }
+        }
+      }
+      .thumb-img{
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 600px;
+        height: 320px;
+        object-fit: cover;
+        // transform: translateX(-50%) translateY(-50%);
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      &:last-child{
+        border-bottom: 1px solid $border-color;
+      }
+      &:not(.swiper-slide){
+        padding: 0;
+        .description-wrapper{
+          .right-side, .date-side{
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+// 프로젝트 섹션 끝
+
+
+
 .tab-wrap {
   @include hstack(10);
   margin-top: rem(20);

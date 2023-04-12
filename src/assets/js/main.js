@@ -178,8 +178,8 @@ const io = new IntersectionObserver((entries) => {
   })
 },
   {
-    threshold: [1.0]
-    // rootMargin : '-30px 0px 0px 0px'
+    threshold: [1.0],
+    rootMargin : '-30px 0px 0px 0px'
   }
 )
 activeTextEls.forEach(el => io.observe(el))

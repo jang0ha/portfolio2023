@@ -1,3 +1,5 @@
+import project from '../data/project.js'
+
 // gsap 플러그인 전역 등록 ()
 gsap.registerPlugin(ScrollTrigger, ResizeObserver, Observer);
 
@@ -165,4 +167,54 @@ function isMobileDevice() {
   return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
-isMobileDevice() 
+isMobileDevice()
+/**
+ * 프로젝트 렌더링
+ */
+
+let projectWrapperEl = document.querySelector(".project-list");
+
+project.forEach(list => {
+  const projectItemEl = document.createElement("li");
+  projectItemEl.classList.add("project-item","swiper-slide");
+
+  // 설명
+  let descLists = '';
+  list.description.forEach(desc =>
+    descLists += /*html */ `
+      <p>${desc.desc1}</p>
+      <p>${desc.desc2}</p>
+    `
+  )
+
+  // 분류
+  let sortLists = '';
+  list.sortList.forEach(sort =>
+    sortLists += /*html */ `
+      <li>${sort.sort1}</li>
+      <li>${sort.sort2}</li>
+    `
+  )
+
+
+  projectItemEl.innerHTML = /*html */ `
+  <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link">
+      <h3 class="title">${list.title}</h3>
+      <div class="description-wrapper">
+        <div class="left-side">
+         ${descLists}
+        </div>
+        <div class="right-side">
+          <ul class="disc-style">
+          ${sortLists}
+          </ul>
+        </div>
+        <div class="date-side">
+        ${list.date}
+        </div>
+      </div>
+      <img src="../../assets${list.thumb}.png" alt="프로젝트 썸네일 이미지" class="thumb-img">
+    </a>
+`
+projectWrapperEl.append(projectItemEl)
+})
