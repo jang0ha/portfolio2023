@@ -150,10 +150,12 @@
     width: 240px;
     height: 240px;
     position: absolute;
-    top: -3%;
+    top: -50px;
     right: -90px;
+    display: grid;
+    place-content: center;
 
-    i {
+    .icon-contact-svg {
       width: 240px;
       height: 240px;
       background-size: contain;
@@ -176,9 +178,7 @@
 
   @include media-tablet-up {
     height: 75vh;
-
     .scroll-container {
-      display: block;
       width: 15vw;
       height: 15vw;
       position: absolute;
@@ -186,7 +186,7 @@
       bottom: rem(-60);
       top: auto;
 
-      i {
+      .icon-contact-svg {
         width: 15vw;
         height: 15vw;
       }

@@ -92,7 +92,7 @@ export default [
   },
   ,
   {
-    title: "skt 소모품 쇼핑몰 페이지",
+    title: "skt 소모품 쇼핑몰",
     description: [
       {
         desc1: "skt 임직원들 대상으로 한 쇼핑몰 재 구축",

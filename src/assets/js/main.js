@@ -179,7 +179,11 @@ const io = new IntersectionObserver((entries) => {
 },
   {
     threshold: [1.0],
-    rootMargin : '-30px 0px 0px 0px'
+    rootMargin : '-100px 0px 0px 0px'
   }
 )
 activeTextEls.forEach(el => io.observe(el))
+
+
+//프로젝트 섹션 도착시 헤더 이벤트
+

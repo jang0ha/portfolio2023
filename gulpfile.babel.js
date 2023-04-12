@@ -13,6 +13,7 @@ const colors = require("ansi-colors");
 const browserify = require('gulp-browserify');
 const jsImport = require('gulp-js-import');
 const uglify = require('gulp-uglify-es').default; // minify
+const javascriptObfuscator = require('gulp-javascript-obfuscator'); //obsfuscate(난독화)
 
 const src = "src";
 const dist = "dist";
@@ -66,6 +67,7 @@ function html() {
     .pipe(connect.reload());
 }
 
+/**js컴파일 */
 function js() {
   return gulp
     .src(paths.js) //소스파일
@@ -82,6 +84,7 @@ function js() {
 //     .pipe(connect.reload()); //변경되면 실시간 새로고침
 // }
 
+/**js 모듈 불러오기 */
 function importjs(){
   return gulp.src(paths.importjs)
   .pipe(jsImport({
@@ -91,10 +94,18 @@ function importjs(){
     .pipe(gulp.dest(dist + "/assets/data"));
 }
 
-//minify
+/**js minify & obsfuscate*/
 function ugly() {
   return gulp.src('src/**/*.js')
-  .pipe(uglify())
+    .pipe(uglify())//minify
+    .pipe(javascriptObfuscator({
+      compact: true,
+      renameGlobals : true,
+      unicodeEscapeSequence : true,
+      splitStrings : true,
+      selfDefending : true,
+      controlFlowFlattening : true,
+  }))
   .pipe(gulp.dest('dist'));
 }
 
@@ -159,6 +170,7 @@ function server(done) {
   done();
 }
 
+/**파일 변경 감지 */
 function watcher(done) {
   gulp.watch(paths.js, gulp.series(js));
   gulp.watch(paths.scss, gulp.series(scss));
@@ -173,6 +185,6 @@ function watcher(done) {
   done();
 }
 
-const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs, ugly));
+const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs));
 
 exports.default = build;

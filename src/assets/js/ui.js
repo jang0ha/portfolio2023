@@ -172,54 +172,65 @@ isMobileDevice()
  * 프로젝트 렌더링
  */
 
-let projectWrapperEl = document.querySelector(".project-list");
 
-project.forEach((list, index) => {
-  const projectItemEl = document.createElement("li");
-  projectItemEl.classList.add("project-item");
+function projectLists() {
+  let projectWrapperEl = document.querySelector(".project-list");
 
-  // 설명
-  let descLists = '';
-  list.description.forEach(desc =>
-    descLists += /*html */ `
-      <p>${desc.desc1}</p>
-      <p>${desc.desc2}</p>
+  if (projectWrapperEl != null) {
+
+    project.forEach((list, index) => {
+      const projectItemEl = document.createElement("li");
+      projectItemEl.classList.add("project-item", "swiper-slide");
+  
+      // 설명
+      let descLists = '';
+      list.description.forEach(desc =>
+        descLists += /*html */ `
+          <p>${desc.desc1}</p>
+          <p>${desc.desc2}</p>
+        `
+      )
+  
+      // 분류
+      let sortLists = '';
+      list.sortList.forEach(sort =>
+        sortLists += /*html */ `
+          <li>${sort.sort1}</li>
+          <li>${sort.sort2}</li>
+        `
+      )
+  
+  
+      projectItemEl.innerHTML = /*html */ `
+      <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link">
+          <h3 class="title">${list.title}</h3>
+          <div class="description-wrapper">
+            <div class="left-side">
+             ${descLists}
+            </div>
+            <div class="right-side">
+              <ul class="disc-style">
+              ${sortLists}
+              </ul>
+            </div>
+            <div class="date-side">
+            ${list.date}
+            </div>
+          </div>
+          <img src="../../assets${list.thumb}.png" alt="프로젝트 썸네일 이미지" class="thumb-img">
+        </a>
     `
-  )
-
-  // 분류
-  let sortLists = '';
-  list.sortList.forEach(sort =>
-    sortLists += /*html */ `
-      <li>${sort.sort1}</li>
-      <li>${sort.sort2}</li>
-    `
-  )
-
-
-  projectItemEl.innerHTML = /*html */ `
-  <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link">
-      <h3 class="title">${list.title}</h3>
-      <div class="description-wrapper">
-        <div class="left-side">
-         ${descLists}
-        </div>
-        <div class="right-side">
-          <ul class="disc-style">
-          ${sortLists}
-          </ul>
-        </div>
-        <div class="date-side">
-        ${list.date}
-        </div>
-      </div>
-      <img src="../../assets${list.thumb}.png" alt="프로젝트 썸네일 이미지" class="thumb-img">
-    </a>
-`
-  projectWrapperEl.append(projectItemEl);
-  if (index >= 4 && body.classList.contains("is-main")) {
-    projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
-    projectItemEl.classList.add("swiper-slide"); //모바일 스와이퍼 클래스 추가
+      projectWrapperEl.append(projectItemEl);
+      if (index >= 4 && body.classList.contains("is-main")) {
+        projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
+      } else if (body.classList.contains("is-project")) {
+        projectItemEl.classList.remove("swiper-slide"); // 프로젝트 페이지일때 클래스 제거
+      }
+      console.log("Object.keys Length : ", Object.keys(list).length); // object 길이 구하기
+    })
   }
-  console.log("Object.keys Length : ",Object.keys(list).length); // object 길이 구하기
-})
+
+
+}
+
+projectLists();

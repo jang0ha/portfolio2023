@@ -48,7 +48,8 @@
   figure{
     position: relative;
     .description{
-      @include vstack(null);
+      display: grid;
+      place-content: end;
       padding:rem(60) rem(20) rem(30);
       position: absolute;
       top: 0;
@@ -76,11 +77,6 @@
         font : {
           size: 4vmax;
         }
-        text-align: right;
-        width: 100%;
-        position: absolute;
-        bottom: rem(20);
-        right: rem(30);
       }
     }
   }
@@ -103,17 +99,11 @@
     figure{
       .description{
         padding:rem(60) rem(30) rem(120);
-        justify-content: flex-end;
         font : {
           size:rem(50);
         }
         .top{
           opacity: 1;
-        }
-        .bottom{
-          font : {
-            size: 4vmax;
-          }
         }
       }
     }
@@ -209,6 +199,7 @@
       color:$disabled;
       &.active{
         color:$black;
+        font-size: $fs-lg;
       }
     }
   }

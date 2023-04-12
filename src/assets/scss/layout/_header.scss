@@ -3,7 +3,7 @@
 
 
 #header {
-  position: sticky;
+  position: fixed;
   height: $header-height;
   z-index: 1030;
   display: block;
@@ -12,6 +12,7 @@
   width: 100%;
   top: 0;
   background-color: transparent;
+  // mix-blend-mode: difference;
   isolation: isolate;
   transition: top 0.2s, mix-blend-mode 0.2s;
 
@@ -29,6 +30,7 @@
   .open-menu & {
     background-color: $black;
     border-color: $black;
+    mix-blend-mode: inherit;
   }
 
   &.hide-header {
@@ -40,6 +42,7 @@
     transform: none;
     top: 0;
   }
+
 }
 
 
@@ -80,10 +83,15 @@
   background-size: 60%;
   transition: transform 0.2s;
 
+  .visible-white & {
+    background: $white svg-image(plus, fff) no-repeat center;
+  }  
+
   .open-menu & {
     transform: rotate(45deg);
     position: relative;
     z-index: 1034;
+
   }
 
   @include media-mobile-up {
@@ -162,10 +170,12 @@
     weight: $fw-bold;
   }
 
-  .open-menu & {
+  .open-menu &, .visible-white & {
     color: $white;
     position: relative;
     z-index: 1034;
+    mix-blend-mode: difference;
+    isolation: isolate;
   }
 
   .stickied-title & {

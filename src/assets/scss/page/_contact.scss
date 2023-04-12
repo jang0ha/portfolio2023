@@ -6,6 +6,8 @@
   width: 95%;
   margin: auto;
   min-height: calc(100vh - 60px - 200rem - 160rem);
+  display: grid;
+  place-content: end start;
   .description-wrapper{
     gap: rem(120);
   }
@@ -32,6 +34,7 @@
 
   @include media-laptop-up{
     padding:rem(200) 0 ;
+    place-content: center;
     .description-wrapper{
       gap: 10vmax;
       text-align: center;
