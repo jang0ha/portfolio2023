@@ -33,7 +33,7 @@ export default [
       }
     ],
     date: "22.07-23.01",
-    link: "https://www.notion.so/jang0ha/7f8d349a512e4f00a0414a86fcbe502e",
+    link: "https://jang0ha.notion.site/7f8d349a512e4f00a0414a86fcbe502e",
     thumb:"/images/thumb-onecare"
   },
   {
@@ -160,7 +160,7 @@ export default [
       }
     ],
     date: "21.06-22.04",
-    link: "https://www.notion.so/jang0ha/58e568f60cd74fa9b83b0596275259a1",
+    link: "https://jang0ha.notion.site/58e568f60cd74fa9b83b0596275259a1",
     thumb:"/images/thumb-cau"
   }
 ]

@@ -11,7 +11,8 @@ const autoprefixer = require("gulp-autoprefixer");
 const fancyLog = require("fancy-log");
 const colors = require("ansi-colors");
 const browserify = require('gulp-browserify');
-var jsImport = require('gulp-js-import');
+const jsImport = require('gulp-js-import');
+const uglify = require('gulp-uglify-es').default; // minify
 
 const src = "src";
 const dist = "dist";
@@ -87,7 +88,14 @@ function importjs(){
       hideConsole: true, //콘솔 숨기기
       importStack: true //한 번만 파일 가져오기
   }))
-  .pipe(gulp.dest(dist + "/assets/data"));
+    .pipe(gulp.dest(dist + "/assets/data"));
+}
+
+//minify
+function ugly() {
+  return gulp.src('src/**/*.js')
+  .pipe(uglify())
+  .pipe(gulp.dest('dist'));
 }
 
 // gulp.task('import', function() {
@@ -138,6 +146,8 @@ function favicon() {
     .pipe(connect.reload()); //변경되면 실시간 새로고침
 }
 
+
+
 function server(done) {
   connect.server({
     root: "./dist/",
@@ -158,10 +168,11 @@ function watcher(done) {
   gulp.watch(paths.lib, gulp.series(lib));
   // gulp.watch(paths.bundle, gulp.series(bundle));
   gulp.watch(paths.importjs, gulp.series(importjs));
+  gulp.watch(paths.js, gulp.series(ugly));
 
   done();
 }
 
-const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs));
+const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs, ugly));
 
 exports.default = build;

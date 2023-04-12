@@ -310,6 +310,7 @@
         height: rem(36);
         background: svg-image(#{$key-name}, 111) no-repeat center;
         background-size: contain;
+        display: block;
       }
     }
     a{
@@ -361,3 +362,8 @@
 // 컨텍트 섹션 끝
 
 
+// .is-main{
+//   .project-item:nth-child(3 + n){
+//     display: none;
+//   }
+// }

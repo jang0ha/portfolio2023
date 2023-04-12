@@ -3,8 +3,9 @@
 //페이지네이션
 .pagination{
   margin-top: rem(30);
-  @include hstack(10);
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  gap: 10rem;
   width: 100%;
   
   a{
@@ -12,8 +13,6 @@
       size: rem(16);
     }
     color:$black;
-    @include hstack(null);
-    justify-content: center;
     width: rem(24);
     height: rem(24);
     border-radius: 50%;

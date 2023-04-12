@@ -41,6 +41,7 @@ button:focus{
 .discover-button{
   padding: rem(16) 0;
   border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
   width: 100%;
   color:$white; 
   display: block;

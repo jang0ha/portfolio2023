@@ -174,9 +174,9 @@ isMobileDevice()
 
 let projectWrapperEl = document.querySelector(".project-list");
 
-project.forEach(list => {
+project.forEach((list, index) => {
   const projectItemEl = document.createElement("li");
-  projectItemEl.classList.add("project-item","swiper-slide");
+  projectItemEl.classList.add("project-item");
 
   // 설명
   let descLists = '';
@@ -216,5 +216,10 @@ project.forEach(list => {
       <img src="../../assets${list.thumb}.png" alt="프로젝트 썸네일 이미지" class="thumb-img">
     </a>
 `
-projectWrapperEl.append(projectItemEl)
+  projectWrapperEl.append(projectItemEl);
+  if (index >= 4 && body.classList.contains("is-main")) {
+    projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
+    projectItemEl.classList.add("swiper-slide"); //모바일 스와이퍼 클래스 추가
+  }
+  console.log("Object.keys Length : ",Object.keys(list).length); // object 길이 구하기
 })
