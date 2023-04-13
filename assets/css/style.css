@@ -459,28 +459,30 @@ body {
   width: 100%;
 }
 
-@media (min-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 24rem;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #d2d2d2;
-    border-radius: 12rem;
-    background-clip: padding-box;
-    border: 6rem solid transparent;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #848484;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 10px;
-    box-shadow: none;
-  }
-  :not(html) ::-webkit-scrollbar {
-    width: 18rem;
-  }
+::-webkit-scrollbar {
+  width: 24rem;
 }
+
+::-webkit-scrollbar-thumb {
+  background-color: #d2d2d2;
+  border-radius: 12rem;
+  background-clip: padding-box;
+  border: 6rem solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #848484;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+:not(html) ::-webkit-scrollbar {
+  width: 18rem;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 0.1302083333vw;
@@ -2618,6 +2620,9 @@ article {
     border: 0;
     padding-bottom: 0;
     overflow: visible;
+  }
+  .project-wrap .swiper.project-swiper .swiper-pagination {
+    display: none;
   }
   .project-wrap .swiper.project-swiper .swiper-wrapper {
     flex-direction: column;
