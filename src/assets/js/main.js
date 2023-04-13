@@ -1,5 +1,5 @@
 
-ScrollTrigger.saveStyles(".is-main");
+ScrollTrigger.saveStyles(".is-main .main-logo", ".is-main .logo-area .logo-wrapper");
 
 
 
@@ -78,11 +78,12 @@ mm.add({
     scrollTrigger: {
       trigger: heroSection,
       // 트리거 기준/ 뷰포트 기준
-      start: () => `-=${heroSection.offsetTop}`,
+      // start: () => `-=${heroSection.offsetTop}`,
+      start : "start `-=${heroSection.offsetTop}`",
       scrub: 1.1,
       pin: true,
       // pinSpacing: false, //핀 시 안컨테이너  위치 고정
-      // markers: true,
+      markers: true,
     },
   });
 
