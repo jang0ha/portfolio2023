@@ -13,11 +13,12 @@ var Init = {
   defaults: function () {
     this.resize();
     window.addEventListener("resize", this.resize);
+    window.addEventListener("resize", this.checkDevice);
   },
   resize: function () {
     Init.getBrowserSize();
     Init.drawBreakPoint();
-    Init.drawBreakPoint();
+    Init.setScreenSize();
     Init.breakpoint = window.matchMedia("(min-width:992px)").matches;
     if (!Init.breakpoint) {
       html.classList.remove("desktop");
@@ -54,6 +55,13 @@ var Init = {
       //아이폰, 안드로이드 외
       html.setAttribute("data-device", "others");
     }
+  },
+  setScreenSize: function () {
+    // 모바일 웹브라우저 스크롤 이슈
+    //먼저 뷰포트 높이를 얻고 1%를 곱하여 vh 단위 값을 얻는다.
+    let vh = window.innerHeight * 0.01;
+    //그런다음 --vh 사용자 정의 속성의 값을 문서의 루트로 설정!
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 };
 
@@ -181,7 +189,7 @@ function projectLists() {
     project.forEach((list, index) => {
       const projectItemEl = document.createElement("li");
       projectItemEl.classList.add("project-item", "swiper-slide");
-  
+
       // 설명
       let descLists = '';
       list.description.forEach(desc =>
@@ -190,7 +198,7 @@ function projectLists() {
           <p>${desc.desc2}</p>
         `
       )
-  
+
       // 분류
       let sortLists = '';
       list.sortList.forEach(sort =>
@@ -199,8 +207,8 @@ function projectLists() {
           <li>${sort.sort2}</li>
         `
       )
-  
-  
+
+
       projectItemEl.innerHTML = /*html */ `
       <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link">
           <h3 class="title">${list.title}</h3>
@@ -234,3 +242,5 @@ function projectLists() {
 }
 
 projectLists();
+
+

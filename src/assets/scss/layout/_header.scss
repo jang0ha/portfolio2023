@@ -3,7 +3,7 @@
 
 
 #header {
-  position: fixed;
+  position: sticky;
   height: $header-height;
   z-index: 1030;
   display: block;
@@ -59,6 +59,12 @@
     margin-left: auto;
   }
 
+  .open-menu & {
+    .talk-button {
+      display: none;
+    }
+  }
+
   @include media-tablet-up {
     flex-grow: 1;
     justify-content: space-between;
@@ -91,7 +97,6 @@
     transform: rotate(45deg);
     position: relative;
     z-index: 1034;
-
   }
 
   @include media-mobile-up {

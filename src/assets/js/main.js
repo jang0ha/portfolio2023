@@ -1,15 +1,3 @@
-let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-// We listen to the resize event
-window.addEventListener('resize', () => {
-  // We execute the same script as before
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
-
-
 
 ScrollTrigger.saveStyles(".is-main");
 
@@ -94,7 +82,7 @@ mm.add({
       scrub: 1.1,
       pin: true,
       // pinSpacing: false, //핀 시 안컨테이너  위치 고정
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -183,7 +171,3 @@ const io = new IntersectionObserver((entries) => {
   }
 )
 activeTextEls.forEach(el => io.observe(el))
-
-
-//프로젝트 섹션 도착시 헤더 이벤트
-

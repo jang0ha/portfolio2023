@@ -168,7 +168,6 @@
     order: 0;
     position: relative;
     padding:rem(60) rem(20);
-    margin-top:rem(50);
     &::before{
       content: '';
       position: absolute;
@@ -197,9 +196,9 @@
     }
     strong{
       color:$disabled;
+      font-size: $fs-lg;
       &.active{
         color:$black;
-        font-size: $fs-lg;
       }
     }
   }
@@ -215,8 +214,7 @@
   @include media-mobile-up{
     grid-template-columns: repeat(2, 1fr);
     gap: 6vmax;
-  
-    height:rem(800);
+    height: rem(1000);
     .left-container{ 
       h3{
         font : {
@@ -224,15 +222,16 @@
         }
       }
       order: 0;
-      align-self: flex-start;
-      justify-self : flex-end;
+      align-self: start;
+      // align-self: flex-start;
+      // justify-self : flex-end;
+      place-self : start flex-end;
       position: sticky;
-      top: 30vh;
+      top: 50vh;
     }
     .right-container{
       max-width: 95%;
-      align-self: flex-end;
-      justify-self : flex-start;
+      place-self : end flex-start;
     }
     .active-text{
       br{
@@ -242,6 +241,7 @@
   }
 }
 // 어바웃 섹션 끝
+
 
 
 

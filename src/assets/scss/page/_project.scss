@@ -347,6 +347,7 @@
           &::after {
             background: svg-image(outlink, 111) no-repeat center;
             background-size: contain;
+            display: block;
           }
         }
       }
