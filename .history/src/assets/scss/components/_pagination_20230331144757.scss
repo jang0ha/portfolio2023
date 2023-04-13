@@ -1,8 +1,0 @@
-@use '../abstract/'as *;
-
-//페이지네이션
-.pagination{
-
-  @include hstack(10);
-  color:$white;
-}
