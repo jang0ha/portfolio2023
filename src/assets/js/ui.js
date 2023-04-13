@@ -230,7 +230,8 @@ function projectLists() {
     `
       projectWrapperEl.append(projectItemEl);
       if (index >= 4 && body.classList.contains("is-main")) {
-        projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
+        // projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
+        projectItemEl.remove ()// 메인페이지이고, 4개이상부터는 안보이게 
       } else if (body.classList.contains("is-project")) {
         projectItemEl.classList.remove("swiper-slide"); // 프로젝트 페이지일때 클래스 제거
       }
@@ -240,7 +241,16 @@ function projectLists() {
 
 
 }
-
 projectLists();
+
+// document.addEventListener("DOMContentLoaded", () => {
+ 
+// });
+
+// window.addEventListener("resize", () => {
+//   projectLists();
+// })
+
+
 
 

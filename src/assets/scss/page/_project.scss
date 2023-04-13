@@ -48,7 +48,11 @@
       border:0;
       padding-bottom: 0;
       overflow: visible;
+      .swiper-pagination{
+        display: none;
+      }
       .swiper-wrapper{
+
         flex-direction: column;
       }
     }

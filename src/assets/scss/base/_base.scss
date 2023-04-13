@@ -31,30 +31,28 @@ body{
 }
 
 
-@include media-mobile-up{
-  // 스크롤바  커스텀
-  ::-webkit-scrollbar {
-    width: rem(24);
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: $middle-gray;
-    border-radius: rem(12);
-    background-clip: padding-box;
-    border: rem(6) solid transparent;
+ // 스크롤바  커스텀
+ ::-webkit-scrollbar {
+  width: rem(24);
+}
+::-webkit-scrollbar-thumb {
+  background-color: $middle-gray;
+  border-radius: rem(12);
+  background-clip: padding-box;
+  border: rem(6) solid transparent;
 
-    &:hover{
-      background-color: $gray;
-    }
+  &:hover{
+    background-color: $gray;
   }
-  ::-webkit-scrollbar-track {
-    background-color:transparent;
-    border-radius: 10px;
-    box-shadow: none;
-  }
-  :not(html){
-    ::-webkit-scrollbar {
-      width: rem(18);
-    }
+}
+::-webkit-scrollbar-track {
+  background-color:transparent;
+  border-radius: 10px;
+  box-shadow: none;
+}
+:not(html){
+  ::-webkit-scrollbar {
+    width: rem(18);
   }
 }
 

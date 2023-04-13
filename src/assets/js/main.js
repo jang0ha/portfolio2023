@@ -19,38 +19,10 @@ function saveStyles(elements) {
 
 
 
-// ============= SMOOTH SCROLL AT ANCHOR FOR MOBILE ==============
-
-let breakpoint = window.matchMedia("(min-width:992px)").matches;
-$(window).resize(function () {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
-  ScrollTrigger.refresh();
-  ScrollTrigger.update();
-  gsap.matchMediaRefresh()
-
-});
-
-
-$(document).ready(function () {
-  ScrollTrigger.refresh();
-  ScrollTrigger.update();
-  gsap.matchMediaRefresh()
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  ScrollTrigger.refresh();
-  ScrollTrigger.update();
-  gsap.matchMediaRefresh()
-
-});
-
-
-
 // breackpoint정의
 let mm = gsap.matchMedia(),
   breakPoint = 992;
-
+let browserMatch = window.matchMedia("(min-width:992px)").matches;
 let heroSection = document.querySelector('.hero-section');
 let mainLogoEl = document.querySelector(".main-logo");
 let subLogoEl = document.querySelector(".sub-logo");
@@ -113,41 +85,54 @@ mm.add({
         duration: 1
     }, "+=0.5")
   
-  // 프로젝트 호버 이미지
-  var myProject = undefined;
-  gsap.set('.project-item .thumb-img', {
-    yPercent: -50,
-    xPercent: -50
-  })
 
-  gsap.utils.toArray(".project-item").forEach((el) => {
-    const image = el.querySelector('.thumb-img'),
-      setX = gsap.quickSetter(image, "x", "px"),
-      setY = gsap.quickSetter(image, "y", "px"),
-      align = e => {
-        setX(e.clientX);
-        setY(e.clientY);
-      },
-      startFollow = () => document.addEventListener("mousemove", align),
-      stopFollow = () => document.removeEventListener("mousemove", align),
-      fade = gsap.to(image, {
-        autoAlpha: 1,
-        ease: "none",
-        paused: true,
-        onReverseComplete: stopFollow
+  
+   // 프로젝트 호버 이미지
+    gsap.set('.project-item .thumb-img', {
+      yPercent: -50,
+      xPercent: -50
+    })
+  
+    gsap.utils.toArray(".project-item").forEach((el) => {
+      const image = el.querySelector('.thumb-img'),
+        setX = gsap.quickSetter(image, "x", "px"),
+        setY = gsap.quickSetter(image, "y", "px"),
+        align = e => {
+          setX(e.clientX);
+          setY(e.clientY);
+        },
+        startFollow = () => document.addEventListener("mousemove", align),
+        stopFollow = () => document.removeEventListener("mousemove", align),
+        fade = gsap.to(image, {
+          autoAlpha: 1,
+          ease: "none",
+          paused: true,
+          onReverseComplete: stopFollow
+        });
+  
+      el.addEventListener('mouseenter', (e) => {
+        fade.play();
+        startFollow();
+        align(e);
       });
-
-    el.addEventListener('mouseenter', (e) => {
-      fade.play();
-      startFollow();
-      align(e);
+  
+      el.addEventListener('mouseleave', () => fade.reverse());
+      if (isMobile) {
+        fade.revert();
+      }
+     
     });
-
-    el.addEventListener('mouseleave', () => fade.reverse());
+  
+  window.addEventListener("resize", function () { 
+    visualLogo.revert();
+  })
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    visualLogo.revert();
   });
 
-
 })
+
 
 
 
@@ -172,3 +157,33 @@ const io = new IntersectionObserver((entries) => {
   }
 )
 activeTextEls.forEach(el => io.observe(el))
+
+
+
+
+
+
+// ============= SMOOTH SCROLL AT ANCHOR FOR MOBILE ==============
+
+
+$(window).resize(function () {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  ScrollTrigger.refresh();
+  ScrollTrigger.update();
+  gsap.matchMediaRefresh()
+
+});
+
+
+$(document).ready(function () {
+  ScrollTrigger.refresh();
+  ScrollTrigger.update();
+  gsap.matchMediaRefresh();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  ScrollTrigger.refresh();
+  ScrollTrigger.update();
+  gsap.matchMediaRefresh()
+});
