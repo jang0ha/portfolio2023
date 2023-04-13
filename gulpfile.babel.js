@@ -14,6 +14,7 @@ const browserify = require('gulp-browserify');
 const jsImport = require('gulp-js-import');
 const uglify = require('gulp-uglify-es').default; // minify
 const javascriptObfuscator = require('gulp-javascript-obfuscator'); //obsfuscate(난독화)
+const ghPages = require('gulp-gh-pages'); // deploy
 
 const src = "src";
 const dist = "dist";
@@ -170,6 +171,9 @@ function server(done) {
   done();
 }
 
+// deploy
+const deployGhPages = () => gulp.src("dist/**/*").pipe(ghPages());
+
 /**파일 변경 감지 */
 function watcher(done) {
   gulp.watch(paths.js, gulp.series(js));
@@ -188,3 +192,7 @@ function watcher(done) {
 const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs, ugly));
 
 exports.default = build;
+
+
+// export const dev = gulp.series([build, live]);
+export const deploy = gulp.series([build, deployGhPages, clean]);
