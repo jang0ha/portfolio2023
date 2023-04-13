@@ -3,14 +3,17 @@
 
 
 
-시작 : 2023년  <br/>
-종료 : 2023년 <br/><br/>
+시작 : 2023년 3월 26일<br/>
+종료 : 2023년 4월 13일 (13days) <br/><br/>
 
-페이지 분량 : <br/>
+페이지 분량 : 4p(프로젝드 디테일 작업안함) <br/>
+디자인 / 퍼블 동시진행  <br/>
 
 - 구조 변경 (gulp)
 - 레이아웃, 구조화 작업 (html, scss)
-- 스크립트 (javscript, jquery)
+- 스크립트 (javscript, jquery, gsap)
+
+
 
 <br/>
 
@@ -18,49 +21,17 @@
 <br/><br/>
 
 ## <a href="" title="장영하 포트폴리오 2023 보기">장영하 포트폴리오 2023보기 </a>
+## <a href="http://jang0ha.dothome.co.kr/portfolio/" title="장영하 포트폴리오 2021 보기">장영하 포트폴리오 2021보기 </a>
 ___
 
 
 ## 🧑‍🎤진행목적  
 ____
 
-<br/>
+<br/><br/>
+
+1. **걸프 task에대한 이해**
+2.  **gsap 활용 다양한 애니메이션 적용**
+3. **grid flex활용**
 
 
-```
-mm.add({
-  isMobile: `(max-width: ${breakPoint - 1}px)` + "and (prefers-reduced-motion : no-preference)",
-  isDesktop: `(min-width: ${breakPoint}px)` + "and (prefers-reduced-motion : no-preference)",
-}, (contenxt) => {
-  console.log(contenxt.conditions);
-})
-
-```
-
-``` 
-**설명
-let mm = gsap.matchMedia(),
-  breakPoint = 992;
-
-setObj.add(값) = 값 추가 
-object.add(첫번째 인수 , 두번째인수)
-object.add(첫번째 인수 >> {객체 속성 : 재 정의}, , 두번째인수 >>콜백함수)
-
-콜백함수 : 함수가 실행될때 또 다른함수의 인수로 들어가는것을 콜백함수라고함. >> "나중에 해당 함수에 의해" 호출되도록 의도됨
->>콜백을 트리거하는 이벤트 또는 조건이 발생하면 호출 함수에 의해 함수가 실행
-
->> mm의 .add( [첫번째 인수] {isMobile, isDesktop} 속성 값을 : `재정의 ), [두번째 인수] 콜백(함수) => {}
-
->>> 결국 첫번쨰 인수 조건, 두번쨰 인수 실행문 
->>>>>  결과 미디어 쿼리에 따라 반응형 실행.
-```
-
-
-```
-**설명
-
-minify >> 용량 경량화 
-obfuscator >>  용량 늘어남
-obfuscator(난독화) 작업은 용량이 정말 많이 커지기 때문에, front-end source에는 적합하지 않고 보통 서버 source나 주요 로직을 누군가에게 노출시키고 싶지 않는 경우 (솔루션 납품하는 경우)에 사용됩니다.
-
-```

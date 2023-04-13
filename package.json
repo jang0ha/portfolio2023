@@ -2,8 +2,11 @@
   "name": "portfolio2023",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://jang0ha.github.io/portfolio2023",
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
