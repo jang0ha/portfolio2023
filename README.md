@@ -20,8 +20,8 @@
 
 <br/><br/>
 
-## <a href="" title="장영하 포트폴리오 2023 보기">장영하 포트폴리오 2023보기 </a>
-## <a href="http://jang0ha.dothome.co.kr/portfolio/" title="장영하 포트폴리오 2021 보기">장영하 포트폴리오 2021보기 </a>
+## <a href="dist/html/main/main.html" title="장영하 포트폴리오 2023 보기" target="_blank">장영하 포트폴리오 2023보기 </a>
+## <a href="http://jang0ha.dothome.co.kr/portfolio/" title="장영하 포트폴리오 2021 보기" target="_blank">장영하 포트폴리오 2021보기 </a>
 ___
 
 

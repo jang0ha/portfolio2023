@@ -173,6 +173,7 @@ function server(done) {
 
 // deploy
 const deployGhPages = () => gulp.src("dist/**/*").pipe(ghPages());
+// const deployGhPages = () => gulp.src("dist/index.html").pipe(ghPages());
 
 /**파일 변경 감지 */
 function watcher(done) {
