@@ -122,14 +122,6 @@ mm.add({
       }
      
     });
-  
-  window.addEventListener("resize", function () { 
-    visualLogo.revert();
-  })
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    visualLogo.revert();
-  });
 
 })
 
