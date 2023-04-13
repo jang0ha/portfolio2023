@@ -185,6 +185,6 @@ function watcher(done) {
   done();
 }
 
-const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs));
+const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs, ugly));
 
 exports.default = build;
