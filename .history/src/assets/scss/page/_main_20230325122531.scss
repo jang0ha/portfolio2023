@@ -1,0 +1,7 @@
+@use '../abstract/' as *;
+
+.description-wrapper{
+  .description{
+    margin-bottom: rem(20);
+  }
+}

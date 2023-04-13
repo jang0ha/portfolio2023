@@ -1,0 +1,11 @@
+.touch-wrap{
+
+
+  @include media-mobile-up{
+    h2{
+      font : {
+        size:rem(60)
+      }
+    }
+  }
+}

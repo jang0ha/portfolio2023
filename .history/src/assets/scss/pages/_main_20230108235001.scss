@@ -1,0 +1,84 @@
+.main-wrapper {}
+
+// 섹션 1 : 메인 비주얼
+#main-visual {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  &::before {
+    content: '';
+    width: 50vw;
+    height: 100vh;
+    display: block;
+    background-color: $black;
+  }
+
+  .visual-wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    &.left-side{
+      left: 0;
+    }
+    &.right-side{
+      right:0;
+    }
+  }
+
+  .visual-container {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    figure {
+      width: 764px;
+      height: 764px;
+      position: absolute;
+      right: -50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      video {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: circle(50% at 50% 50%);
+      }
+    }
+  }
+
+  .dummy-circle {
+    width: 764px;
+    height: 764px;
+    border-radius: 50%;
+    position: absolute;
+
+    .left-side & {
+      background-color: $white;
+    }
+  }
+  .main-svg-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+  .main-visual-circle{
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    display: block;
+    // > rect{
+    //   fill: white;
+    //   -webkit-mask: url(#mask-main-visual-left);
+    //   mask: url(#mask-main-visual-left);
+    // }
+  }
+}
+
+// 섹션 1 : 메인 비주얼 끝

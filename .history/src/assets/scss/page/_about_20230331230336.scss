@@ -1,0 +1,17 @@
+@use '../abstract/' as *;
+
+.article-about{
+  .visual-title{
+    font: {
+      size: rem(40)
+    };
+  }
+
+  @include media-mobile-up{
+    .visual-title{
+      font: {
+        size: $fs-xxl;
+      }
+    }
+  }
+}

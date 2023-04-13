@@ -1,0 +1,12 @@
+@use '../abstract/' as *;
+
+
+#wrap{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main{
+  padding:rem(100) 0;
+  flex: 1;
+}

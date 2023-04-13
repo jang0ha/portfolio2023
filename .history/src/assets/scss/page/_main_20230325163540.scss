@@ -1,0 +1,102 @@
+@use '../abstract/' as *;
+
+
+.hero-wrap{
+  @include media-mobile-up{
+    margin-top: rem(200);
+    small{
+      font : {
+        size:rem(40);
+      }
+    }
+  }
+}
+
+.description-wrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: rem(40);
+  .description{
+    margin-bottom: rem(20);
+    li{
+      font : {
+        size: rem(14);
+      }
+      line-height: 1.8;
+      word-wrap: break-word;
+      
+    }
+  }
+  .left-description{
+    @include hstack(20);
+  }
+
+  @include media-mobile-up {
+    .description{
+      li{
+        font : {
+          size: rem(18);
+        }
+        line-height: 1.8;
+      }
+    }
+  }
+}
+
+
+
+.visual-img-wrap{
+  .inner{
+    padding:0
+  }
+  img{
+ 
+    filter: grayscale(100%);
+    height: rem(300);
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: filter 0.3s;
+  }
+
+  figure{
+    position: relative;
+    mix-blend-mode: difference;
+    .description{
+      position: absolute;
+      top: 0;
+      transition: all 0.3s;
+      font : {
+        size: rem(20);
+        weight : bold;
+      }
+      // color:$white;
+      text-shadow: -1px 0 $white, 0 1px $white, 1px 0 $white, 0 -1px $white;
+      color:$black;
+    }
+  }
+
+
+  &:hover{
+    img{
+      filter: grayscale(0);
+    }
+  }
+
+  @include media-mobile-up{
+    .inner{
+      padding: 0 rem(20);
+    }
+    img{
+      height: auto;
+         border-radius: $border-radius;
+    }
+    figure{
+      .description{
+        font : {
+          size:rem(50);
+        }
+      }
+    }
+  }
+}

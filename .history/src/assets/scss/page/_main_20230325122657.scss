@@ -1,0 +1,14 @@
+@use '../abstract/' as *;
+
+.description-wrapper{
+  .description{
+    margin-bottom: rem(20);
+    li{
+      font : {
+        size: rem(14);
+      }
+      word-wrap: break-word;
+      
+    }
+  }
+}

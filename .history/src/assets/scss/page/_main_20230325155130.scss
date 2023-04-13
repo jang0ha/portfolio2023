@@ -1,0 +1,51 @@
+@use '../abstract/' as *;
+
+
+.hero-wrap{
+  @include media-mobile-up{
+    margin-top: rem(200);
+    small{
+      font : {
+        size:rem(40);
+      }
+    }
+  }
+}
+.description-wrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+  .description{
+    margin-bottom: rem(40);
+    li{
+      font : {
+        size: rem(14);
+      }
+      line-height: 1.4;
+      word-wrap: break-word;
+      
+    }
+  }
+  .left-description{
+    @include hstack(10);
+  }
+
+  @include media-mobile-up {
+    grid-template-columns: 20% 1fr;
+    .description{
+      li{
+        font : {
+          size: rem(18);
+        }
+        line-height: 1.5;
+      }
+    }
+    .left-description{
+      display: block;
+      // @include hstack(10);
+      // flex-direction: column;
+      // align-items: flex-start;
+    }
+  }
+}
+
+

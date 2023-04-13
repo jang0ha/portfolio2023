@@ -1,0 +1,24 @@
+@use '../abstract/'as *;
+
+/*푸터*/
+
+#footer{
+  background-color: $white;;
+  border-radius: $border-radius $border-radius 0 0;
+}
+
+.footer-wrapper{
+  @include vstack(20);
+  padding: rem(100) rem(20) rem(200) rem(20);
+  span{
+    color : $gray;
+  }
+  .line{
+    width: 100%;
+  }
+
+  @include media-laptop-up{
+    flex-direction: row-reverse;
+    gap: rem(100);
+  }
+}

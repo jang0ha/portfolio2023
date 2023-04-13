@@ -1,0 +1,305 @@
+@use 'abstract'as *;
+
+
+
+#header {
+  position: sticky;
+  height: $header-height;
+  z-index: 1030;
+  display: block;
+  max-width: none;
+  padding: 0;
+  width: 100%;
+  top: 0;
+  background-color: transparent;
+  isolation: isolate;
+  transition: top 0.2s, mix-blend-mode 0.2s;
+
+  .inner {
+    @include hstack(0);
+    justify-content: space-between;
+    position: absolute;
+  }
+
+  @include media-mobile-up {
+    height: $header-height-lg;
+  }
+
+
+  .open-menu & {
+    background-color: $black;
+    border-color: $black;
+  }
+
+  &.hide-header {
+    top:-#{$header-height};
+  }
+
+  &.header-fixed {
+    position: sticky;
+    transform: none;
+    top: 0;
+  }
+}
+
+
+.header-util {
+  @include hstack(10);
+  flex: none;
+
+  p {
+    display: none;
+  }
+
+  .talk-button {
+    display: none;
+    margin-left: auto;
+  }
+
+  @include media-tablet-up {
+    flex-grow: 1;
+    justify-content: space-between;
+    width: 50%;
+
+    p {
+      display: block;
+    }
+
+    .talk-button {
+      display: block;
+    }
+  }
+}
+
+
+.menu-button {
+  width: 48px;
+  height: 48px;
+  background: $black svg-image(plus, fff) no-repeat center;
+  border-radius: 50%;
+  background-size: 60%;
+  transition: transform 0.2s;
+
+  .open-menu & {
+    transform: rotate(45deg);
+    position: relative;
+    z-index: 1034;
+  }
+
+  @include media-mobile-up {
+    width: rem(40);
+    height: rem(40);
+  }
+}
+
+.logo-area {
+  position: relative;
+  height: $header-height;
+
+  .logo-wrapper {
+    transform: translateY(rem(200));
+
+    small {
+      font : {
+        weight: bold;
+      }
+
+      display: block;
+      // margin-bottom: rem(16);
+    }
+
+    &::after {
+      content: '';
+      padding-bottom: 100%;
+    }
+  }
+
+  @include media-mobile-up {
+    flex-grow: 1;
+    height: $header-height-lg;
+    width: 50%;
+
+    .logo-wrapper {
+      small {
+        font : {
+          size: $fs-lg;
+        }
+
+        // margin-bottom: rem(26);
+
+      }
+    }
+  }
+}
+
+
+
+%logo {
+  letter-spacing: -0.75rem;
+  transition: color 0.3s;
+  display: inline-block;
+
+  font : {
+    size: $fs-lg;
+    weight: $fw-bold;
+  }
+
+  .open-menu & {
+    color: $white;
+    position: relative;
+    z-index: 1034;
+  }
+
+  .stickied-title & {
+    color: $black;
+  }
+}
+
+
+.main-logo {
+  @extend %logo;
+
+  font : {
+    size: rem(50);
+    weight: $fw-bold;
+  }
+
+  width: 100vw;
+  word-break: keep-all;
+
+  @include media-mobile-up {
+    font : {
+      size: rem(100);
+      weight: $fw-bold;
+    }
+  }
+}
+
+.sub-logo {
+  @extend %logo;
+  opacity: 0;
+  color: $dark-gray;
+  position: relative;
+  margin-left: rem(10);
+  padding-left: rem(10);
+
+  font : {
+    size: 14px;
+  }
+
+  &::before {
+    content: '';
+    width: 1px;
+    height: 70%;
+    background-color: $dark-gray;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+.gnb {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  padding: 0 rem(20);
+
+  .open-menu & {
+    @include vstack(null);
+    justify-content: flex-end;
+    background-color: $black;
+    position: fixed;
+    top: $header-height;
+    // top: 0;
+    width: 100%;
+    // height: 100%;
+    height: calc(100vh - $header-height);
+    left: 0;
+    padding: rem(20);
+    opacity: 1;
+    visibility: visible;
+    overflow-x: auto;
+  }
+
+  @include media-laptop-up {
+    .open-menu & {
+      padding: rem(80);
+    }
+  }
+}
+
+.gnb-list {
+  width: 100%;
+  padding-bottom: rem(100);
+
+  a {
+    font : {
+      size: $fs-xl;
+      weight: $fw-extra;
+    }
+
+    padding:rem(24) rem(20);
+    color:$white;
+    display: block;
+    width: 100%;
+    border-bottom:1px solid $border-color;
+    position: relative;
+    mix-blend-mode: difference;
+    isolation: isolate;
+    transition:mix-blend-mode 0.3s 0.2s ease-in-out,
+    padding-left 0.3s 0.2s ease-in-out;
+
+    &::before {
+      content: '';
+      width: 0;
+      height: 100%;
+      background-color: $white;
+
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      mix-blend-mode: difference;
+      isolation: isolate;
+      transition: mix-blend-mode 0.3s 0.2s ease-in-out, width 0.4s ease-in-out, background-color 0.1s ease-in;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: rem(36);
+      height: rem(36);
+      background: svg-image(outlink, fff) no-repeat center;
+      background-size: cover;
+      display: block;
+      mix-blend-mode: difference;
+      isolation: isolate;
+      transition: transform 0.2s ease-in-out, mix-blend-mode 0.3s 0.2s ease-in-out, right 0.2s ease-in-out;
+    }
+
+    &:hover {
+      padding-left: rem(80);
+
+      &::before {
+        width: 100%;
+      }
+
+      &::after {
+        transform: translateY(-50%) rotate(45deg);
+        background-size: contain;
+        right: rem(20);
+      }
+    }
+  }
+
+  @include media-laptop-up {
+    a {
+      padding: rem(40);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use '../abstract/' as *;
+
+//레이아웃 관련 
+
+#wrap{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.inner {
+  padding: 0 rem(20);
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  @include media-mobile-up {
+    padding: 0 rem(30);
+    margin: auto;
+  }
+}
+
+
+main{
+  padding:rem(70) 0;
+  flex: 1;
+}
+
+
+.section {
+  // margin-bottom: rem(80);
+
+  // @include media-mobile-up{
+  //   margin-bottom: rem(120);
+  // }
+}
+
+article{
+  padding: rem(40) 0;
+
+  @include media-mobile-up{
+    padding: rem(80) 0;
+  }
+}

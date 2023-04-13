@@ -1,0 +1,17 @@
+@use '../abstract/' as *;
+
+
+.touch-wrap{
+
+
+  @include media-mobile-up{
+    .description-wrapper{
+      grid-template-columns:repeat(2, 1fr);
+    }
+    h2{
+      font : {
+        size:rem(60);
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@use '../abstract/' as *;
+
+
+.touch-wrap{
+  .description-wrapper{
+    gap: rem(160);
+  }
+  h1{
+    font : {
+      size:rem(30);
+    }
+    margin-top: rem(30);
+    margin-bottom: rem(20);
+  }
+  p{
+    font : {
+      size: rem(20);
+    }
+  }
+
+  @include media-mobile-up{
+    .description-wrapper{
+      gap: rem(100);
+      text-align: center;
+    }
+
+    h1{
+      font : {
+        size:rem(100);
+      }
+      margin-top: rem(60);
+      margin-bottom: rem(40);
+    }
+    p{
+      font : {
+        size: rem(60);
+      }
+    }
+  }
+}
+
+
+.mail-button{
+  @include button();
+  width: fit-content;
+  background-color: $black;
+  color: $white;;
+
+  @include media-mobile-up{
+    width: fit-content;
+    margin: auto;
+    border-radius: 60px;
+    position: relative;
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    transition: none;
+    span{
+      @include button();
+      height: rem(100);
+      background-color: $black;
+      color: $white;
+      // transition: all 0.3s ease-in-out 0s;
+      &:nth-child(1){
+        @include hstack(null);
+        justify-content: center;
+        width: rem(200);
+        transition: transform 0.4s ease-in-out 0s, padding 0.5s;
+      }
+      &:nth-child(2){ transition: transform 0.4s ease-in-out 0s, padding 0.5s}
+      &:nth-child(3){
+        transform: rotate(-90deg);
+        background-color: $red;
+        transition:  transform 0.2s;
+      }
+    }
+    &:hover, &:focus{
+      @include hstack(10);
+      justify-content: center;
+      width: rem(280);
+      height: rem(100);
+      background-color: $black;
+      border-radius: rem(100);
+      span{
+        padding:0;
+        width: auto;
+        background-color: $black;
+        &:nth-child(3){
+          transform: rotate(0);
+        }
+      }
+ 
+    }
+  }
+}

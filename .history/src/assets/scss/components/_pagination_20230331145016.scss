@@ -1,0 +1,34 @@
+@use '../abstract/'as *;
+
+//페이지네이션
+.pagination{
+
+  @include hstack(10);
+  
+  a{
+    font : {
+      size: rem(16);
+    }
+    color:$white;
+    @include hstack(null);
+    justify-content: center;
+    width: rem(20);
+    height: rem(20);
+  }
+
+  @include media-mobile-up{
+    a{
+      font : {
+        size: rem(24);
+      }
+
+      transition: all 0.3s;
+      &:hover, &:focus{
+
+        background-color: $white;
+        border-radius: 50%;
+        color:$black;
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+
+// 플렉스 / 가로
+@mixin hstack($gap:null) {
+  display: inline-flex;
+  align-items: center;
+
+  @if($gap==null) {
+    gap: inherit;
+  }
+
+  @else {
+    gap : #{$gap}rem;
+  }
+}
+
+// 플렉스/세로
+@mixin vstack($gap:null) {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+
+  @if($gap==null) {
+    gap: inherit;
+  }
+
+  @else {
+    gap : #{$gap}rem;
+  }
+}
+
+
+//그리드
+@mixin grid-container($rows: null, $cols: null, $gap: null) {
+  display: grid;
+  @include grid-container-append($rows, $cols, $gap);
+}
+
+@mixin grid-container-append(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+) {
+  @if $rows != null {
+    @include grid-rows($rows);
+  }
+
+  @if $cols != null {
+    @include grid-cols($cols);
+  }
+  @if $gap != null {
+    @include gap($gap);
+  }
+}
+
+@mixin grid-rows($value: null) {
+  @if $value == null {
+    @error 'grid-rows() 믹스인 사용 시, 숫자 또는 none, 단위 있는 숫자, 리스트 값을 전달해야 합니다.';
+  }
+
+  $type: type-of($value);
+  $unitless-value: unitless($value);
+
+  // 단위 없는 숫자 값만 전달받은 경우
+  @if $type == 'number' and $unitless-value {
+    grid-template-rows: repeat($value, minmax(0, 1fr));
+  }
+
+  // 단위가 있는 숫자 또는 리스트 값을 전달받은 경우
+  @if $type == 'number' and not $unitless-value or $type == 'list' {
+    grid-template-rows:   $value;
+  }
+}
+
+@mixin grid-cols($value: null) {
+  // 아무런 값을 전달 받지 않은 경우
+  @if $value == null {
+    @error 'grid-cols() 믹스인 사용 시, 숫자 또는 none 값을 전달해야 합니다.';
+  }
+
+  // none 값을 전달 받은 경우
+  @if $value == 'none' {
+    grid-template-columns: none;
+  }
+
+  $type: type-of($value);
+  $unitless-value: unit($value);
+
+  // 단위 없는 숫자 값만 전달받은 경우
+  @if $type == 'number' and $unitless-value {
+    grid-template-columns: repeat($value, minmax(0, 1fr));
+  }
+
+  // 단위가 있는 숫자 또는 리스트 값을 전달받은 경우
+  @if $type == 'number' and not $unitless-value or $type == 'list' {
+    grid-template-columns: $value;
+  }
+}
+
+@mixin gap($value: null) {
+  @if $value == null {
+    @error 'gap() 믹스인은 숫자 값을 1 또는 2개의 값을 전달 받아야 합니다.';
+  }
+  @if length($value) == 1 {
+    gap: #{$value}rem;
+  }
+  @if length($value) == 2 {
+    row-gap: nth(#{$value}rem, 1);
+    column-gap: nth(#{$value}rem, 2);
+  }
+}

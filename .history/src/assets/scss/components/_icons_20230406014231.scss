@@ -1,0 +1,20 @@
+@use '../abstract/mixins' as mix;
+@use '../abstract/functions' as func;
+
+$images : github, notion, skill, cooperation, compatibility, user, contact-svg;
+.icon{
+  @each $value in $images{
+    //기본아이콘
+    &-#{$value}{
+      @include mix.bg-url ("icon-#{$value}");
+      width: func.rem(24);
+      height: func.rem(24);
+    }
+
+    &-about__#{$value}{
+      @include mix.bg-url ("icon-about__#{$value}");
+      width: 2vmax;
+      height: 2vmax;
+    }
+  }
+}

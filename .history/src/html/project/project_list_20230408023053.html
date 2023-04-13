@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/html/_include/_head.html',{"title": "장영하 포트폴리오"})
+</head>
+
+<body class="is-project">
+  <div id="wrap">
+    @@include('@@webRoot/html/_include/_header.html')
+    <main id="container">
+      <h1 class="visually-hidden">장영하 포트폴리오</h1>
+      <section class="section" aria-label="project">
+        <div class="inner">
+          <div class="title-info-wrap">
+            <div class="desc">
+              <small>✺ WHAT I DO</small>
+              <h2 class="main-title">
+                Creator of <strong>Quality Designs,</strong> <br>
+                and Thinker of <strong>Fresh Ideas.</strong>
+              </h2>
+              <p>사용자 경험을 제공하는 맞춤형 웹사이트를 만드는것이 저의 즐거움입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="main-title-wrap">
+          <div class="inner">
+            <small>My latest views, and more</small>
+            <h3 class="title">Project.</h3>
+          </div>
+        </div>
+        <article class="project-wrap">
+          <div class="inner">
+            <div class="project-list-wrapper">
+              <p class="summary-text">**전체 프로젝트 진행 개월 수(시작~종료) / 투입 인원 / 기여도 </p>
+              <!-- @@ 모바일일떄만 스와이퍼 -->
+              <div class="project-swiper">
+                <ul class="project-list" role="navigation">
+                  <li class="project-item">
+                    <a href="" title="프로젝트 이동" class="project-link">
+                      <h3 class="title">ONCARE</h3>
+                      <div class="description-wrapper">
+                        <div class="left-side">
+                          <p>기업 통합 검진 대행 플랫폼 사이트 </p>
+                          <p>임직원 사이트(FRONT), 통합 관리자 사이트(ADMIN)</p>
+                        </div>
+                        <div class="right-side">
+                          <ul class="disc-style">
+                            <li>PC / MOBILE 반응형</li>
+                            <li>7 MONTH / 3 / 80% (Total) </li>
+                          </ul>
+                        </div>
+                        <div class="date-side">
+                          22.07-23.01
+                        </div>
+                      </div>
+                      <img src="@@webRoot/assets/images/thumbnail-oncare.png" alt="프로젝트 썸네일 이미지" class="thumb-img">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              @@include('@@webRoot/html/_include/_pagination.html')
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    @@include('@@webRoot/html/_include/_footer.html')
+  </div>
+
+</body>
+<script>
+
+</script>
+
+</html>

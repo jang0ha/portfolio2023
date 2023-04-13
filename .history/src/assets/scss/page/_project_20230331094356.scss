@@ -1,0 +1,22 @@
+@use '../abstract/' as *;
+
+.tab-wrap{
+  @include hstack(10);
+  a{
+    font : {
+      size: $fs-lg;
+    }
+    color:$gray;
+  }
+
+
+  @include media-mobile-up {
+    gap: rem(40);
+    margin-bottom: rem(20);
+    a{
+      font : {
+        size: $fs-xl;
+      }
+    }
+  }
+}

@@ -1,0 +1,322 @@
+@use 'functions'as *;
+@use 'variables'as *;
+
+
+
+/*믹스인*/
+
+
+// 플렉스 / 가로
+@mixin hstack($gap:null) {
+  display: inline-flex;
+  align-items: center;
+
+  @if($gap==null) {
+    gap: inherit;
+  }
+
+  @else {
+    gap : #{$gap}rem;
+  }
+}
+
+// 플렉스/세로
+@mixin vstack($gap:null) {
+  display: inline-flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  @if($gap==null) {
+    gap: inherit;
+  }
+
+  @else {
+    gap : #{$gap}rem;
+  }
+}
+
+
+//그리드
+@mixin grid-container($rows: null, $cols: null, $gap: null) {
+  display: grid;
+  @include grid-container-append($rows, $cols, $gap);
+}
+
+@mixin grid-container-append(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+) {
+  @if $rows != null {
+    @include grid-rows($rows);
+  }
+
+  @if $cols != null {
+    @include grid-cols($cols);
+  }
+  @if $gap != null {
+    @include gap($gap);
+  }
+}
+
+@mixin grid-rows($value: null) {
+  @if $value == null {
+    @error 'grid-rows() 믹스인 사용 시, 숫자 또는 none, 단위 있는 숫자, 리스트 값을 전달해야 합니다.';
+  }
+
+  $type: type-of($value);
+  $unitless-value: unitless($value);
+
+  // 단위 없는 숫자 값만 전달받은 경우
+  @if $type == 'number' and $unitless-value {
+    grid-template-rows: repeat($value, minmax(0, 1fr));
+  }
+
+  // 단위가 있는 숫자 또는 리스트 값을 전달받은 경우
+  @if $type == 'number' and not $unitless-value or $type == 'list' {
+    grid-template-rows:   $value;
+  }
+}
+
+@mixin grid-cols($value: null) {
+  // 아무런 값을 전달 받지 않은 경우
+  @if $value == null {
+    @error 'grid-cols() 믹스인 사용 시, 숫자 또는 none 값을 전달해야 합니다.';
+  }
+
+  // none 값을 전달 받은 경우
+  @if $value == 'none' {
+    grid-template-columns: none;
+  }
+
+  $type: type-of($value);
+  $unitless-value: unit($value);
+
+  // 단위 없는 숫자 값만 전달받은 경우
+  @if $type == 'number' and $unitless-value {
+    grid-template-columns: repeat($value, minmax(0, 1fr));
+  }
+
+  // 단위가 있는 숫자 또는 리스트 값을 전달받은 경우
+  @if $type == 'number' and not $unitless-value or $type == 'list' {
+    grid-template-columns: $value;
+  }
+
+  @if $type != 'number'  {
+    grid-template-columns: $value;
+  }
+}
+
+@mixin gap($value: null) {
+  @if $value == null {
+    @error 'gap() 믹스인은 숫자 값을 1 또는 2개의 값을 전달 받아야 합니다.';
+  }
+  @if length($value) == 1 {
+    gap: #{$value}rem;
+  }
+  @if length($value) == 2 {
+    row-gap: nth(#{$value}rem, 1);
+    column-gap: nth(#{$value}rem, 2);
+  }
+}
+
+
+// 이미지 백그라운드 경로
+$path-image : '../images/';
+
+@mixin bg-url($imageName, $type: "svg") {
+  background: url("#{$path-image}#{$imageName}.#{$type}") no-repeat center;
+  background-size: contain;
+  display: inline-block;
+}
+
+
+
+//말줄임
+@mixin ellipsis($lines: 1) {
+  @if ($lines==1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+}
+
+// 버튼 
+@mixin button {
+  @include hstack(10);
+  @include rounded($border-radius-lg);
+  border-color: transparent;
+  padding: rem(10) rem(24);
+  cursor: pointer;
+  text-decoration: none;
+
+  font : {
+    size: rem(14);
+    weight: bold;
+  }
+
+  box-shadow: none !important;
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent;
+  transition: $btn-transition;
+
+  //this determines Mozilla to show the padding
+  // @include shadow;
+  // @include button-bg($value);
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+
+// 버튼 색상 스타일
+@mixin button-bg($background,
+  $border : if($color==$color-contrast-light,
+    shade-color($background, $btn-hover-bg-tint-amount),
+    tint-color($background, $btn-hover-bg-shade-amount)),
+  $color: color-contrast($background),
+  $hover-background: // 조건 / true / false
+
+  if($color==$color-contrast-dark,
+    shade-color($background, $btn-hover-bg-shade-amount),
+    tint-color($background, $btn-hover-bg-tint-amount))) {
+  border-color: $border;
+  background-color: $background;
+  // @include gradient(lighten($color, 13%), $color);//그라디언트
+  // color: mix(#fff, $color, 90%);
+  // color: $theme-colors.invert($background);
+  color: $color;
+
+  &:hover,
+  &:active {
+    background-color: $hover-background;
+    // @include gradient(lighten($color, 10%), darken($color, 5%))//그라디언트
+    // background:lighten($background, 10%);
+    // border-color: lighten($background, 13%);
+  }
+
+}
+
+
+// 버튼 아웃라인 스타일
+@mixin button-outline-variant($color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)) {
+  color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+
+  &:disabled,
+  &.disabled {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
+
+
+@mixin rounded($border) {
+  -webkit-border-radius: $border;
+  -moz-border-radius: $border;
+  border-radius: $border;
+}
+
+
+// 카드 형태 단위
+@mixin card($paddiing-y, $paddiing-x) {
+  border: 1rem solid $border-color;
+  border-radius: $border-radius-md;
+  padding : #{$paddiing-y}rem #{$paddiing-x}rem;
+}
+
+
+//form-filed 
+@mixin form-field-type($type : input) {
+  padding: $form-padding-x $form-padding-y;
+  border-radius: $border-radius;
+
+  @if ($type==input) {
+    height: rem(56);
+  }
+
+  @else if($type==textarea) {
+    height: rem(150);
+  }
+
+  @else if ($type == select ){
+    height: rem(56);
+    padding-right: rem(40);
+    position: relative;
+    &::after{
+      content:'';
+      position: absolute;
+      width: rem(20);
+      height: rem(20);
+      right: rem(15);
+      top: 50%;
+      background-image: svg-image(chevron, 666);
+      transform:rotate(90deg) translateY(-50%);
+    }
+  }
+}
+
+//form-check
+@mixin form-check-type($type : checkbox) {
+  width: rem(20);
+  height: rem(20);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid $border-color;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  flex: none;
+  cursor: pointer;
+  background-color: $white;
+
+  @if ($type==checkbox) {
+    border-radius: 4px;
+
+    &:checked {
+      background-color: $blue;
+      border-color: $blue;
+      background-image: svg-image(check, fff);
+    }
+  }
+
+  @else if($type==radio) {
+    border-radius: 50%;
+
+    &:checked {
+      background-color: $blue;
+      border-color: $blue;
+      background-image: svg-image(radio, fff);
+    }
+  }
+}
+

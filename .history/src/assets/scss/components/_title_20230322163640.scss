@@ -1,0 +1,80 @@
+@use '../abstract/'as *;
+
+.main-title {
+  font : {
+    size: rem(32);
+    weight: bold;
+  }
+
+  text-align: center;
+  margin :0 0 rem(50) 0;
+
+  @include res--mobile-up{
+    size: rem(44);
+    margin :rem(50) 0 rem(100) 0;
+  }
+}
+
+.title-header-wrap {
+  @include hstack(8);
+  margin-bottom: rem(20);
+
+  h2 {
+    font : {
+      size: rem(18);
+      weight: bold;
+    }
+  }
+
+  &.required {
+    h2 {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: rem(4);
+        height: rem(4);
+        border-radius: 50%;
+        background-color: $danger;
+        top: 10px;
+        margin-left: rem(10);
+
+        font : {
+          size: rem(14);
+        }
+      }
+    }
+  }
+}
+
+.essential-title {
+  font : {
+    size: rem(14);
+    weight: 400;
+  }
+  position: relative;
+  float: right;
+  letter-spacing: -0.005em;
+  color: $danger;
+  margin-bottom: 40px;
+  padding-left: rem(30);
+  &::after {
+    content: '';
+    font : {
+      size: rem(14);
+    }
+    position: absolute;
+    left: 0;
+    width: rem(4);
+    height: rem(4);
+    border-radius: 50%;
+    background-color: $danger;
+    top: 10px;
+    margin-left: rem(10);
+    display: inline-block;
+  }
+  & ~ *{
+    clear: both;
+  }
+}

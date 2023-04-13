@@ -1,0 +1,8 @@
+.tab-wrap{
+  @include hstack(10);
+  a{
+    font :{
+      size: rem(10);
+    }
+  }
+}

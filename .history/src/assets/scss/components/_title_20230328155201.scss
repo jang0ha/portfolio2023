@@ -1,0 +1,57 @@
+@use '../abstract/'as *;
+.stickied-title{
+  .title-wrapper{
+    small{
+      font : {
+        size: rem(12);
+      }
+    }
+    .main-title{
+      @extend .logo;
+      // opacity: 0;
+      // visibility: hidden;
+    }
+  }  
+}
+
+.main-title {
+  font : {
+    size: rem(50);
+    weight: $fw-bold;
+  }
+  line-height: rem(54);
+  display: inline-block;
+  margin :rem(20) 0 rem(60) 0;
+  transition: all 0.3s;
+  @include media-mobile-up{
+    font : {
+      size: rem(150);
+    }
+    line-height: rem(150);
+    // margin :rem(80) 0 rem(80) 0;
+  }
+
+
+}
+
+.visual-title{
+  font : {
+    size : rem(48);
+  }
+  text-shadow: text-outline($border-color);
+  line-height: 1.1;
+  color:$white;
+
+  @include media-tablet-up{
+    font : {
+      size : rem(68);
+    }
+  }
+}
+
+
+.summary-text{
+  font : {
+    size : rem(12);
+  }
+}

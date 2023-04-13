@@ -1,0 +1,18 @@
+@use '../abstract/' as *;
+
+.description-wrapper{
+  .description{
+    margin-bottom: rem(20);
+    li{
+      font : {
+        size: rem(14);
+      }
+      line-height: 1.4;
+      word-wrap: break-word;
+      
+    }
+  }
+  .left-description{
+    @include hstack(10);
+  }
+}

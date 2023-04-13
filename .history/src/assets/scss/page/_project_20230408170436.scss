@@ -1,0 +1,195 @@
+@use '../abstract/'as *;
+
+.tab-wrap {
+  @include hstack(10);
+  margin-top: rem(20);
+  margin-bottom: rem(20);
+
+  a {
+    font : {
+      size: $fs-lg;
+    }
+
+    color:$gray;
+    position: relative;
+    transition: all 0.3s;
+
+    &.active {
+      color: $black;
+
+      font: {
+        weight: $fw-bold;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: rem(6);
+        height: rem(6);
+        background-color: $red;
+        border-radius: 50%;
+        left: 50%;
+        top: -40%;
+        transform: translateX(-50%);
+        transition: all 0.3s;
+      }
+    }
+  }
+
+
+  @include media-mobile-up {
+    gap: rem(40);
+    margin-bottom: rem(20);
+
+    a {
+      font : {
+        size: $fs-xl;
+      }
+    }
+  }
+}
+
+
+// 디테일 페이지
+.project-detail-section {
+  padding: 0;
+  figure {
+    width: 100%;
+    height: rem(600);
+    img {
+      width: 100%;
+    
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+}
+
+.project-detail-wrap {
+  padding-top: 0;
+
+
+  .project-main {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: rem(200);
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  // .title-wrap{
+  //   padding-bottom: rem(80);
+  //   .title{
+  //     font : {
+  //       size: rem(40);
+  //       weight : $fw-extra;
+  //     }
+  //     transform:translateY(-50%);
+  //   }
+  //   p{
+  //     font : {
+  //       size: $fs-lg;
+  //     }
+  //   }
+  // }
+
+  .detail {
+    padding-bottom: rem(30);
+    border-bottom: 1px solid $border-color;
+    margin-bottom: rem(60);
+  }
+
+  .description-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    gap: rem(40);
+
+    &.inner {
+      border-top: 1px solid $border-color;
+      padding-top: rem(60);
+
+      .description {
+        @include vstack(20);
+      }
+
+      .detail-view-button {
+        margin-top: rem(30);
+      }
+    }
+  }
+
+  @include media-mobile-up {
+
+    .project-main {
+      img {
+        height: rem(500);
+      }
+    }
+
+    .title-wrap {
+      padding-bottom: rem(40);
+
+      .title {
+        font : {
+          size: $fs-xxl;
+          weight: $fw-extra;
+        }
+
+        transform:translateY(-50%);
+      }
+    }
+
+    .description-wrapper {
+      gap: rem(60);
+
+      &.inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(40);
+      }
+    }
+  }
+
+  @include media-laptop-up {
+    padding-bottom: rem(120);
+
+
+    .description-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+
+      &.inner {
+        border: 0;
+      }
+    }
+  }
+}
+
+// 디테일 페이지 끝
+
+
+.is-project {
+  .project-section {
+    background-color: transparent;
+  }
+
+  .project-list {
+    >li {
+      a {
+        color: $black;
+
+        .title {
+          color: $black;
+
+          &::after {
+            background: svg-image(outlink, 111) no-repeat center;
+            background-size: contain;
+          }
+        }
+      }
+    }
+  }
+
+  @include media-mobile-up {}
+}

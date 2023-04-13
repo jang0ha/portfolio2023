@@ -1,0 +1,212 @@
+@use '../abstract/'as *;
+
+
+
+.section-service{
+  .card{
+    padding:rem(40) rem(20);
+  }
+  @include media-tablet-up{
+    .card{
+      padding:rem(80);
+    }
+    .desc{
+      font : {
+        size :$fs-lg;
+      }
+    }
+  }
+
+}
+
+.my-service-info {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color :$yellow;
+  position: relative;
+  small{
+    font : {
+      size: $fs-sm;
+    }
+    display: block;
+    color:$success;
+    margin-top: rem(100);
+  }
+  .main-title{
+    font : {
+      size: $fs-lg;
+      weight: $fw-normal;
+    }
+    line-height: 1.2;
+  }
+  p{
+    font : {
+      size: $fs-md;
+    }
+    margin-bottom: 0;
+  } 
+  .scroll-container{
+    display: none;
+  }
+  @include media-tablet-up{
+    .scroll-container{
+      display: block;
+      width: 15vw;
+      height: 15vw;
+      position: absolute;
+      right: rem(60);
+      bottom:  rem(-60);
+      i{
+        width: 15vw;
+        height: 15vw;
+        background-size: contain;
+      }
+      .scroll{
+        @include hstack(null);
+        color: $success;
+        justify-content: center;
+        width: 8vmax;
+        height: 8vmax;
+        border-radius: 50%;
+        position: absolute;
+        background-color: $black;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .desc{
+      max-width: 80%;
+      padding:rem(60) 0;
+    }
+    small{
+      display: block;
+      font : {
+        size: $fs-lg;
+        weight:bold;
+      }
+    }
+    .main-title{
+      font : {
+        size: 5vmax;
+      }
+      strong {
+        font : {
+          weight : $fw-bold;
+        }
+      }
+    }
+    p{
+      font : {
+        size:$fs-lg;
+        weight:bold;
+      }
+      
+    } 
+  }
+}
+
+.my-service-list-container{
+  @include grid-container(1, null, 10);
+  @include media-tablet-up{
+    gap:rem(30);
+  }
+}
+.my-service-list {
+  @include grid-container(null, 1, null);
+
+  &__left {
+    .card {
+      @include vstack(60);
+      width: 100%;
+      background-color: $black;
+      position: relative;
+
+    }
+    .desc{
+      small{
+        color:$success;
+        margin-bottom: rem(20);
+        display: block;
+        font : {
+          weight: bold;
+        }
+      }
+      color:$success;
+    }
+  }
+
+  &__right {
+    display: none;
+  }
+
+  .card {
+    min-height: rem(300);
+  }
+
+  @include media-tablet-up {
+    grid-template-columns :repeat(2, 1fr) ;
+    &__left{
+      .card{
+        flex-direction: row;
+        &::after{
+          content: '';
+          width: rem(100);
+          height: 100%;
+          background-color: $black;
+          position: absolute;
+          right: rem(-50);
+          top: 0;
+          z-index:-1 ;
+          display: none;
+        }
+      }
+    }
+
+    &__right {
+      display: block;
+      .card {
+        @include vstack(14);
+        background-color: $white;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        box-shadow: $box-shadow-lg;
+        small{
+          color:$success;
+          font : {
+            size: $fs-lg;
+          }
+        }
+        h2{
+          font : {
+            size: 3vmax;
+            weight:$fw-extra;
+          }
+        }
+      }
+    }
+   
+  }
+}
+
+
+.my-summary-wrap{
+  @include card(20, 20);
+  background-color: $white;
+  overflow: hidden;
+  display: flex;
+  span{
+    display: block;
+    margin-bottom: rem(20);
+  }
+  h2{
+    display: flex;
+    flex: none
+  }
+
+  @include media-tablet-up{
+    @include card(40, 40);
+  }
+}

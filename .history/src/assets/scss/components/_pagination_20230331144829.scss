@@ -1,0 +1,24 @@
+@use '../abstract/'as *;
+
+//페이지네이션
+.pagination{
+
+  @include hstack(10);
+  
+  a{
+    font : {
+      size: rem(16)''
+    }
+    color:$white;
+  }
+
+  @include media-mobile-up{
+    a{
+      font : {
+        size: rem(16)''
+      }
+      color:$white;
+    }
+  
+  }
+}

@@ -1,0 +1,75 @@
+@use '../abstract/' as *;
+
+
+/*베이스 스타일*/
+
+
+
+html {
+  height: auto;
+  color:$black;
+  line-height: 1.285;
+  &.fixed{
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+  }
+}
+body{
+  font-size: rem(16);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+}
+
+
+@include media-mobile-up{
+  // 스크롤바  커스텀
+  ::-webkit-scrollbar {
+    width: rem(20);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $middle-gray;
+    border-radius: rem(12);
+    background-clip: padding-box;
+    border: rem(6) solid transparent;
+
+    &:hover{
+      background-color: $gray;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background-color:transparent;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+  :not(html){
+    ::-webkit-scrollbar {
+      width: rem(18);
+    }
+  }
+}
+
+@include media-mobile-up{
+  html {
+    // font-size: 0.26666666666666665vw;
+    font-size: 0.13020833333333335vw;
+  }
+
+}
+
+@include media-tablet-up{
+  html {
+        font-size: 0.09775171065493645vw;
+  }
+}
+
+@include media-laptop-up{
+  html {
+    font-size: 6.25%;
+  }
+  body {
+    line-height: 1.34;
+  }
+}

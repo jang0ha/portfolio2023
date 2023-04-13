@@ -1,0 +1,133 @@
+@use '../abstract/' as *;
+
+.touch-wrap{
+  @include card(60, 10);
+  background-color: $white;
+  width: 95%;
+  margin: auto;
+  min-height: calc(100vh - 60px - 200rem - 160rem);
+  display: grid;
+  place-content: end start;
+  .description-wrapper{
+    gap: rem(120);
+  }
+  .main-title-wrap{
+    border: 0;
+    padding: 0;
+    .title{
+      font : {
+        size:rem(30);
+        weight:$fw-normal;
+      }
+      margin-top: rem(30);
+    margin-bottom: rem(16);
+    }
+  }
+
+
+  p{
+    font : {
+      size: rem(20);
+    }
+    color:$gray;
+  }
+
+  @include media-laptop-up{
+    padding:rem(200) 0 ;
+    .description-wrapper{
+      gap: 10vmax;
+      text-align: center;
+      position: relative;
+      padding-top: 10vmax;
+      &::before{
+        content: '';
+        width: 1px;
+        height:8vmax;
+        background-color: $gray;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+      }
+    }
+
+    .main-title-wrap{
+      .title{
+        font : {
+          size:4vmax;
+        }
+        margin-top: rem(60);
+        margin-bottom: rem(40);
+      }
+    }
+   
+    p{
+      font : {
+        size: 2vmax;
+
+      }
+    }
+  }
+}
+
+
+.mail-button{
+  @include button();
+  width: fit-content;
+  background-color: $black;
+  color: $white;
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  height: rem(52);
+  @include media-laptop-up{
+    // width: fit-content;
+    width: rem(380);
+    margin: auto;
+    border-radius: 60px;
+    position: relative;
+    gap: rem(10);
+    background-color: transparent;
+    padding: 0;
+    transition: none;
+    height: rem(100);
+    transition: width 0.2s;
+    span{
+      @include button();
+      height: rem(100);
+      background-color: $black;
+      color: $white;
+      &:nth-child(1){
+        display: grid;
+        place-items: center;
+        width: rem(200);
+        transition: transform 0.4s ease-in-out 0s, padding 0.5s;
+      }
+      &:nth-child(2){ transition: transform 0.4s ease-in-out 0s, padding 0.5s}
+      &:nth-child(3){
+        transform: rotate(-90deg);
+        background-color: $red;
+        transition:  transform 0.2s;
+      }
+    }
+    &:hover, &:focus{
+      gap:rem(10);
+      // @include hstack(10);
+      // justify-content: center;
+      place-content: center;
+      width: rem(280);
+      height: rem(100);
+      background-color: $black;
+      border-radius: rem(100);
+      span{
+        padding:0;
+        width: fit-content;
+        background-color: $black;
+        &:nth-child(3){
+          transform: rotate(0);
+        }
+      }
+ 
+    }
+  }
+}
