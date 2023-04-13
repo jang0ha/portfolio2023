@@ -172,8 +172,11 @@ function server(done) {
 }
 
 // deploy
-const deployGhPages = () => gulp.src("dist/**/*").pipe(ghPages());
-// const deployGhPages = () => gulp.src("dist/index.html").pipe(ghPages());
+const deployGhPages = () => gulp.src("./dist/**/*").pipe(ghPages());
+// gulp.task('deploy', function() {
+//   return gulp.src('./dist/**/*')
+//     .pipe(ghPages());
+// });
 
 /**파일 변경 감지 */
 function watcher(done) {
@@ -191,9 +194,11 @@ function watcher(done) {
 }
 
 const build = gulp.series(clean, gulp.parallel(js, font, image, favicon, scss, html, lib, watcher, server, importjs, ugly));
+const uploadPage = gulp.series([deployGhPages]);
+
 
 exports.default = build;
 
 
 // export const dev = gulp.series([build, live]);
-export const deploy = gulp.series([build, deployGhPages, clean]);
+export const deploy = gulp.series([build, uploadPage, clean]);
