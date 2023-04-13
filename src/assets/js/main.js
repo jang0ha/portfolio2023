@@ -83,7 +83,7 @@ mm.add({
       scrub: 1.1,
       pin: true,
       // pinSpacing: false, //핀 시 안컨테이너  위치 고정
-      markers: true,
+      // markers: true,
     },
   });
 
