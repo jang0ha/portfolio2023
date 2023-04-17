@@ -191,7 +191,8 @@
 
 .main-logo {
   @extend %logo;
-
+  mix-blend-mode: color-burn;
+  isolation: isolate;
 
   .is-main & {
     font : {

@@ -89,8 +89,8 @@ mm.add({
   
    // 프로젝트 호버 이미지
     gsap.set('.project-item .thumb-img', {
-      yPercent: -50,
-      xPercent: -50
+      yPercent: -70,
+      xPercent: -70
     })
   
     gsap.utils.toArray(".project-item").forEach((el) => {
@@ -102,7 +102,7 @@ mm.add({
           setY(e.clientY);
         },
         startFollow = () => document.addEventListener("mousemove", align),
-        stopFollow = () => document.removeEventListener("mousemove", align),
+        stopFollow = () => document.removeEventListener("mouseleave", align),
         fade = gsap.to(image, {
           autoAlpha: 1,
           ease: "none",
