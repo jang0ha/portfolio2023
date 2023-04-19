@@ -2123,6 +2123,10 @@ article {
   background: #fff;
 }
 
+.cursor-none {
+  transform: scale(0);
+}
+
 .hero-section {
   margin-top: 200rem;
   padding-bottom: 0;
@@ -2725,6 +2729,7 @@ article {
   }
   .project-list > li a {
     padding: 40rem 0;
+    position: relative;
   }
   .project-list > li a .description-wrapper {
     grid-template-columns: 1fr 1fr auto;
@@ -2737,13 +2742,14 @@ article {
   }
   .project-list > li .thumb-img {
     display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
     width: 600px;
     height: 304px;
     -o-object-fit: cover;
        object-fit: cover;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
     z-index: 9;
     opacity: 0;
     visibility: hidden;
@@ -2883,6 +2889,7 @@ article {
 }
 .is-project .project-list > li a .title {
   color: #191919;
+  padding-right: 30rem;
 }
 .is-project .project-list > li a .title::after {
   background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23111' stroke-width='2' stroke-miterlimit='10' d='M4.1,2.5h5.4v5.3'%3E%3C/path%3E%3Cpath fill='none' stroke='%23111' stroke-width='2' stroke-miterlimit='10' d='M8.9,3.2L2.2,9.8'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
