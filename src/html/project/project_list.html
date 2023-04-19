@@ -2,7 +2,7 @@
 <html lang="ko">
 
 <head>
-  @@include('@@webRoot/html/_include/_head.html',{"title": "장영하 포트폴리오"})
+  @@include('@@webRoot/html/_include/_head.html', {"dep1": "프로젝트"})
 </head>
 
 <body class="is-project">
@@ -10,7 +10,7 @@
     @@include('@@webRoot/html/_include/_header.html')
     <main id="container">
       <h1 class="visually-hidden">장영하 포트폴리오</h1>
-      <section class="section project-list-section" aria-label="project">
+      <section class="section project-list-section" aria-label="project" data-sort ="project">
         <div class="inner">
           <div class="title-info-wrap">
             <div class="desc">
@@ -32,7 +32,7 @@
                 <h2 class="title">Projects.</h2>
                 <p>선별된 몇몇의 프로젝트를 소개합니다.</p><br>
                 <div class="desc">
-                  <a href="https://jang0ha.notion.site/ab755beaf4874635ae260ead716fbd94?v=6d18bc726c70418288953c627f134995"  target="_blank" title="노션 프로젝트 페이지 새창이동"  class="notion-button"></a>
+                  <a href="https://jang0ha.notion.site/ab755beaf4874635ae260ead716fbd94?v=6d18bc726c70418288953c627f134995"  target="_blank" title="노션 프로젝트 페이지 새창이동"  class="notion-button cursor-event small"></a>
                   <p>👈 프로젝트 설명/ 개인프로젝트 / 더많은 프로젝트를 보기 원하신다면  여기를 클릭해주세요.</p>
                 </div>
               </div>
@@ -42,6 +42,7 @@
                 <!-- @@ 모바일일떄만 스와이퍼 -->
                 <div class="project-swiper">
                   <ul class="project-list" role="navigation">
+                    <!-- js  -->
                     <!-- <li class="project-item">
                       <a href="" title="프로젝트 이동" class="project-link">
                         <h3 class="title">ONCARE</h3>

@@ -87,42 +87,43 @@ mm.add({
   
 
   
-   // 프로젝트 호버 이미지
-    gsap.set('.project-item .thumb-img', {
-      yPercent: -70,
-      xPercent: -70
-    })
-  
-    gsap.utils.toArray(".project-item").forEach((el) => {
-      const image = el.querySelector('.thumb-img'),
-        setX = gsap.quickSetter(image, "x", "px"),
-        setY = gsap.quickSetter(image, "y", "px"),
-        align = e => {
-          setX(e.clientX);
-          setY(e.clientY);
-        },
-        startFollow = () => document.addEventListener("mousemove", align),
-        stopFollow = () => document.removeEventListener("mouseleave", align),
-        fade = gsap.to(image, {
-          autoAlpha: 1,
-          ease: "none",
-          paused: true,
-          onReverseComplete: stopFollow
-        });
-  
-      el.addEventListener('mouseenter', (e) => {
-        fade.play();
-        startFollow();
-        align(e);
-      });
-  
-      el.addEventListener('mouseleave', () => fade.reverse());
-      if (isMobile) {
-        fade.revert();
-      }
-     
-    });
 
+    // gsap.set('.project-item .thumb-img', {
+    //   yPercent: -50,
+    //   xPercent: -50,
+    //   transformOrigin: "center",
+    // })
+  
+    // gsap.utils.toArray(".project-item").forEach((el) => {
+    //   const image = el.querySelector('.thumb-img'),
+    //     setX = gsap.quickSetter(image, "x", "px"),
+    //     setY = gsap.quickSetter(image, "y", "px"),
+    //     align = e => {
+    //       setX(e.clientX);
+    //       setY(e.clientY);
+    //     },
+    //     startFollow = () => document.addEventListener("mousemove", align),
+    //     stopFollow = () => document.removeEventListener("mouseleave", align),
+    //     fade = gsap.to(image, {
+    //       autoAlpha: 1,
+    //       ease: "none",
+    //       paused: true,
+    //       onReverseComplete: stopFollow
+    //     });
+  
+    //   el.addEventListener('mouseenter', (e) => {
+    //     fade.play();
+    //     startFollow();
+    //     align(e);
+    //   });
+  
+    //   el.addEventListener('mouseleave', () => fade.reverse());
+    //   if (isMobile) {
+    //     fade.revert();
+    //   }
+  
+    // });
+   
 })
 
 

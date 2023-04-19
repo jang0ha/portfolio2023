@@ -171,7 +171,6 @@ function stopScroll() {
 
 // 모바일 체크
 function isMobileDevice() {
-  console.log('모바일 접속');
   return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
@@ -183,7 +182,7 @@ isMobileDevice()
 
 function projectLists() {
 
-  
+
   let projectWrapperEl = document.querySelector(".project-list");
 
   if (projectWrapperEl != null) {
@@ -198,6 +197,7 @@ function projectLists() {
         descLists += /*html */ `
           <p>${desc.desc1}</p>
           <p>${desc.desc2}</p>
+          <p>${desc.desc3}</p>
         `
       )
 
@@ -212,7 +212,7 @@ function projectLists() {
 
 
       projectItemEl.innerHTML = /*html */ `
-      <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link">
+      <a href="${list.link}" target="_black" title="${list.title} 프로젝트로 새창 이동" class="project-link hide cursor-event">
           <h3 class="title">${list.title}</h3>
           <div class="description-wrapper">
             <div class="left-side">
@@ -233,9 +233,10 @@ function projectLists() {
       projectWrapperEl.append(projectItemEl);
       if (index >= 4 && body.classList.contains("is-main")) {
         // projectItemEl.style.display = "none"; // 메인페이지이고, 4개이상부터는 안보이게 
-        projectItemEl.remove ()// 메인페이지이고, 4개이상부터는 안보이게 
+        projectItemEl.remove() // 메인페이지이고, 4개이상부터는 안보이게 
       } else if (body.classList.contains("is-project")) {
         projectItemEl.classList.remove("swiper-slide"); // 프로젝트 페이지일때 클래스 제거
+        // projectItemEl.classList.add("cursor-event", "small"); // 프로젝트 페이지일때 커서이벤트 추가
       }
       console.log("Object.keys Length : ", Object.keys(list).length); // object 길이 구하기
     })
@@ -250,38 +251,101 @@ projectLists();
 
 // 마우스 커서이벤트
 var cursor = document.querySelector('.cursor'),
-    cursorScale = document.querySelectorAll('.cursor-event'),
-    mouseX = 0,
-    mouseY = 0
+  cursorScale = document.querySelectorAll('.cursor-event'),
+  mouseX = 0,
+  mouseY = 0
 
-gsap.to({}, 0.016, {
+function cursorEvent() {
+  gsap.to({}, 0.016, {
     repeat: -1,
-
     onRepeat: function () {
-        gsap.set(cursor, {
-            css: {
-                left: mouseX,
-                top: mouseY
-            }
-        })
+      gsap.set(cursor, {
+        css: {
+          left: mouseX,
+          top: mouseY
+        }
+      })
     }
-});
+  });
 
-window.addEventListener("mousemove", function (e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY
-});
-
-cursorScale.forEach(link => {
+  cursorScale.forEach(link => {
     link.addEventListener('mouseleave', () => {
-        cursor.classList.remove('grow');
-        cursor.classList.remove('grow-small');
+      cursor.classList.remove('grow');
+      cursor.classList.remove('grow-small');
+      cursor.classList.remove('cursor-none');
     });
     link.addEventListener('mousemove', () => {
-        cursor.classList.add('grow');
-        if(link.classList.contains('small')){
-            cursor.classList.remove('grow');
-            cursor.classList.add('grow-small');
-        }
+      cursor.classList.add('grow');
+      if (link.classList.contains('small')) {
+        cursor.classList.remove('grow');
+        cursor.classList.remove('cursor-none');
+        cursor.classList.add('grow-small');
+      }
+      if (link.classList.contains('hide')) {
+        cursor.classList.remove('grow');
+        cursor.classList.remove('grow-small');
+        cursor.classList.add('cursor-none');
+      }
     });
-});
+  });
+
+}
+
+
+cursorEvent();
+
+
+function cursorFollow() {
+  window.addEventListener("mousemove", function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY
+  });
+}
+cursorFollow();
+
+function projectHover() {
+  // // 프로젝트 호버 이미지
+
+  gsap.utils.toArray(".project-item").forEach((el) => {
+
+    const image = el.querySelector('img.thumb-img'),
+      setX = gsap.quickSetter(image, "x", "px"),
+      setY = gsap.quickSetter(image, "y", "px"),
+      align = e => {
+        const top = el.getBoundingClientRect().top;
+        const left = el.getBoundingClientRect().left;
+        setX(e.clientX - left);
+        setY(e.clientY - top);
+
+      },
+      startFollow = () => {
+        document.addEventListener("mousemove", align);
+      }
+      ,
+      stopFollow = () => document.removeEventListener("mousemove", align),
+      fade = gsap.to(image, {
+        autoAlpha: 1,
+        ease: "none",
+        paused: true,
+        onReverseComplete: () => {
+          stopFollow;
+        }
+
+      });
+
+    el.addEventListener('mouseenter', (e) => {
+      fade.play();
+      startFollow();
+      align(e);
+
+    });
+
+    el.addEventListener('mouseleave', () => {
+      fade.reverse();
+  
+    });
+  });
+
+}
+
+projectHover();
