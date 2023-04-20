@@ -274,7 +274,7 @@
       border-top: 1px solid $border-color;
       padding-top: rem(60);
 
-      .description {
+      .description-container {
         @include vstack(20);
       }
 

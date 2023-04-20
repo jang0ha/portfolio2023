@@ -279,10 +279,10 @@
       bottom: 0;
     }
   }
-  .description{
+  .description-container{
     margin-top: rem(20);
   }
-  .title-area{
+  .title-container{
     gap: rem(40);
     h2{
       font : {
@@ -332,7 +332,7 @@
     // .side{
     //   padding:0 2vmax;
     // }
-    .title-area{
+    .title-container{
       margin-left: auto;
       h2{
         font : {
@@ -341,7 +341,7 @@
         word-break: keep-all;
       }
     }
-    .description{
+    .description-container{
       align-self: flex-end;
       min-height: rem(180);
       margin-top:rem(30);
