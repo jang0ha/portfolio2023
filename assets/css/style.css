@@ -2363,13 +2363,13 @@ article {
   z-index: -1;
   bottom: 0;
 }
-.contact-wrap .description {
+.contact-wrap .description-container {
   margin-top: 20rem;
 }
-.contact-wrap .title-area {
+.contact-wrap .title-container {
   gap: 40rem;
 }
-.contact-wrap .title-area h2 {
+.contact-wrap .title-container h2 {
   font-size: 32rem;
   font-weight: 700;
 }
@@ -2417,14 +2417,14 @@ article {
     width: 100%;
     left: 0;
   }
-  .contact-wrap .title-area {
+  .contact-wrap .title-container {
     margin-left: auto;
   }
-  .contact-wrap .title-area h2 {
+  .contact-wrap .title-container h2 {
     font-size: 46rem;
     word-break: keep-all;
   }
-  .contact-wrap .description {
+  .contact-wrap .description-container {
     align-self: flex-end;
     min-height: 180rem;
     margin-top: 30rem;
@@ -2822,7 +2822,7 @@ article {
   border-top: 1px solid #CED4DA;
   padding-top: 60rem;
 }
-.project-detail-wrap .description-wrapper.inner .description {
+.project-detail-wrap .description-wrapper.inner .description-container {
   display: inline-flex;
   align-items: flex-start;
   flex-direction: column;
