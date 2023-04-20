@@ -256,44 +256,46 @@ var cursor = document.querySelector('.cursor'),
   mouseY = 0
 
 function cursorEvent() {
-  gsap.to({}, 0.016, {
-    repeat: -1,
-    onRepeat: function () {
-      gsap.set(cursor, {
-        css: {
-          left: mouseX,
-          top: mouseY
-        }
-      })
-    }
-  });
 
-  cursorScale.forEach(link => {
-    link.addEventListener('mouseleave', () => {
-      cursor.classList.remove('grow');
-      cursor.classList.remove('grow-small');
-      cursor.classList.remove('cursor-none');
-    });
-    link.addEventListener('mousemove', () => {
-      cursor.classList.add('grow');
-      if (link.classList.contains('small')) {
-        cursor.classList.remove('grow');
-        cursor.classList.remove('cursor-none');
-        cursor.classList.add('grow-small');
+  if (Init.breakpoint) {
+    cursor.style.display = "block";
+    gsap.to({}, 0.016, {
+      repeat: -1,
+      onRepeat: function () {
+        gsap.set(cursor, {
+          css: {
+            left: mouseX,
+            top: mouseY
+          }
+        })
       }
-      if (link.classList.contains('hide')) {
+    });
+  
+    cursorScale.forEach(link => {
+      link.addEventListener('mouseleave', () => {
         cursor.classList.remove('grow');
         cursor.classList.remove('grow-small');
-        cursor.classList.add('cursor-none');
-      }
+        cursor.classList.remove('cursor-none');
+      });
+      link.addEventListener('mousemove', () => {
+        cursor.classList.add('grow');
+        if (link.classList.contains('small')) {
+          cursor.classList.remove('grow');
+          cursor.classList.remove('cursor-none');
+          cursor.classList.add('grow-small');
+        }
+        if (link.classList.contains('hide')) {
+          cursor.classList.remove('grow');
+          cursor.classList.remove('grow-small');
+          cursor.classList.add('cursor-none');
+        }
+      });
     });
-  });
-
+  
+  } else {
+    cursor.style.display = "none";
+  }
 }
-
-
-cursorEvent();
-
 
 function cursorFollow() {
   window.addEventListener("mousemove", function (e) {
@@ -301,10 +303,17 @@ function cursorFollow() {
     mouseY = e.clientY
   });
 }
+
+cursorEvent();
 cursorFollow();
 
-function projectHover() {
+
+
+
+
   // // 프로젝트 호버 이미지
+function projectHover() {
+
 
   gsap.utils.toArray(".project-item").forEach((el) => {
 
@@ -349,3 +358,4 @@ function projectHover() {
 }
 
 projectHover();
+

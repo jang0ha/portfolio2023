@@ -2,19 +2,17 @@
 
 
 .cursor{
-  @mixin media-tablet-up {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    margin-left: -20px;
-    margin-top: -20px;
-    border-radius: 50%;
-    border: 2px solid $black;
-    transition: transform .3s ease;
-    transform-origin: center center;
-    pointer-events: none;
-    z-index: 1000;
-  }
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-radius: 50%;
+  border: 2px solid $black;
+  transition: transform .3s ease;
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 1000;
 }
 
 
